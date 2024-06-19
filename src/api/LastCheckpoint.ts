@@ -4,10 +4,10 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
-import { GetCheckpointByTrackingIdQuery } from "../model/GetCheckpointByTrackingIdQuery";
-import { GetCheckpointByTrackingIdResponse } from "../model/GetCheckpointByTrackingIdResponse";
 import { GetCheckpointBySlugTrackingNumberQuery } from "../model/GetCheckpointBySlugTrackingNumberQuery";
 import { GetCheckpointBySlugTrackingNumberResponse } from "../model/GetCheckpointBySlugTrackingNumberResponse";
+import { GetCheckpointByTrackingIdQuery } from "../model/GetCheckpointByTrackingIdQuery";
+import { GetCheckpointByTrackingIdResponse } from "../model/GetCheckpointByTrackingIdResponse";
 
 export class LastCheckpointApi {
     private readonly request: Request;
@@ -16,19 +16,6 @@ export class LastCheckpointApi {
         this.request = request;
     }
 
-    /**
-     * Return the tracking information of the last checkpoint of a single tracking.
-     */
-    public async getCheckpointByTrackingId(tracking_id: string, query?: GetCheckpointByTrackingIdQuery, headers?: {[key: string]: any}): Promise<GetCheckpointByTrackingIdResponse> {
-        if (!tracking_id) {
-            throw new AftershipError(
-                "Invalid params: tracking_id",
-                AfterShipErrorCodes.VALUE_INVALID
-            );
-        }
-        
-        return this.request.makeRequest<GetCheckpointByTrackingIdResponse>({url: `/tracking/2024-04/last_checkpoint/${tracking_id}`, method: "GET", query, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
-    }
     /**
      * Return the tracking information of the last checkpoint of a single tracking.
      */
@@ -47,5 +34,18 @@ export class LastCheckpointApi {
         }
         
         return this.request.makeRequest<GetCheckpointBySlugTrackingNumberResponse>({url: `/tracking/2024-04/last_checkpoint/${slug}/${tracking_number}`, method: "GET", query, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
+    }
+    /**
+     * Return the tracking information of the last checkpoint of a single tracking.
+     */
+    public async getCheckpointByTrackingId(tracking_id: string, query?: GetCheckpointByTrackingIdQuery, headers?: {[key: string]: any}): Promise<GetCheckpointByTrackingIdResponse> {
+        if (!tracking_id) {
+            throw new AftershipError(
+                "Invalid params: tracking_id",
+                AfterShipErrorCodes.VALUE_INVALID
+            );
+        }
+        
+        return this.request.makeRequest<GetCheckpointByTrackingIdResponse>({url: `/tracking/2024-04/last_checkpoint/${tracking_id}`, method: "GET", query, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
     }
 }
