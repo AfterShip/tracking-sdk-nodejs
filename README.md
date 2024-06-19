@@ -249,7 +249,7 @@ aftership.tracking
     .catch((e) => console.log(e));
 ```
 
-**POST** /trackings/:id
+**POST** /trackings/:id/mark-as-completed
 
 ```javascript
 aftership.tracking
