@@ -15,7 +15,7 @@ export const DEFAULT_TIMEOUT = 10000;
 export const DEFAULT_MAX_RETRY = 3;
 export const MAX_MAX_RETRY = 10;
 export const MIN_MAX_RETRY = 0;
-export const DEFAULT_USER_AGENT = "";
+export const DEFAULT_USER_AGENT = "tracking-sdk-nodejs/9.0.0 (https://www.aftership.com) axios/1.7.2";
 
 type ResponseData = {
     meta: {
