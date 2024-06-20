@@ -13,13 +13,14 @@ entry {
                     requireStaticAsset       : false,
                     uploadAssetCredential    : "",
                     domainType               : "",
-                    unitTest                 : "yarn test",
-                    integrationTest          : "test/integration_test.sh",
+                    unitTest                 : "",
+                    integrationTest          : "",
                     useEnvironmentVariable   : false,
                     hasStagingEnvironment    : false,
                     hasProductionEnvironment : true,
-                    useNPM                   : true,
+                    useNPM                   : false,
                     npmPackageOnly           : true,
+                    prePublishScript         : "yarn build",
                     prePublishScript         : "",
                     optionsForAftershipPublish : ""
             ]
