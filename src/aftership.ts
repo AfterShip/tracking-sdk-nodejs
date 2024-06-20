@@ -3,10 +3,10 @@
  * Do not edit the class manually.
  */
 import { TrackingApi } from "./api/Tracking";
-import { LastCheckpointApi } from "./api/LastCheckpoint";
+import { CourierApi } from "./api/Courier";
 import { NotificationApi } from "./api/Notification";
 import { EstimatedDeliveryDateApi } from "./api/EstimatedDeliveryDate";
-import { CourierApi } from "./api/Courier";
+import { LastCheckpointApi } from "./api/LastCheckpoint";
 import { AftershipError, AfterShipErrorCodes } from "./error";
 import { AuthType } from "./lib/authentication";
 import {
@@ -35,10 +35,10 @@ const SDK_ENV_PREFIX = "AFTERSHIP_TRACKING_SDK";
 
 export class AfterShip {
     public readonly tracking: TrackingApi;
-    public readonly lastCheckpoint: LastCheckpointApi;
+    public readonly courier: CourierApi;
     public readonly notification: NotificationApi;
     public readonly estimatedDeliveryDate: EstimatedDeliveryDateApi;
-    public readonly courier: CourierApi;
+    public readonly lastCheckpoint: LastCheckpointApi;
     private readonly options: Options;
 
     constructor(options?: Options) {
@@ -101,10 +101,10 @@ export class AfterShip {
             proxy: parseProxy(this.options.proxy),
         });
         this.tracking = new TrackingApi(request);
-        this.lastCheckpoint = new LastCheckpointApi(request);
+        this.courier = new CourierApi(request);
         this.notification = new NotificationApi(request);
         this.estimatedDeliveryDate = new EstimatedDeliveryDateApi(request);
-        this.courier = new CourierApi(request);
+        this.lastCheckpoint = new LastCheckpointApi(request);
     }
 
     private validateOptions() {

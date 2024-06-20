@@ -4,10 +4,10 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
+import { GetAllCouriersResponse } from "../model/GetAllCouriersResponse";
+import { GetUserCouriersResponse } from "../model/GetUserCouriersResponse";
 import { TrackingDetectCourierRequest } from "../model/TrackingDetectCourierRequest";
 import { DetectCourierResponse } from "../model/DetectCourierResponse";
-import { GetUserCouriersResponse } from "../model/GetUserCouriersResponse";
-import { GetAllCouriersResponse } from "../model/GetAllCouriersResponse";
 
 export class CourierApi {
     private readonly request: Request;
@@ -17,11 +17,11 @@ export class CourierApi {
     }
 
     /**
-     * Return a list of matched couriers based on tracking number format and  or a list of couriers.
+     * Return a list of all couriers.
      */
-    public async detectCourier(body: TrackingDetectCourierRequest, headers?: {[key: string]: any}): Promise<DetectCourierResponse> {
+    public async getAllCouriers( headers?: {[key: string]: any}): Promise<GetAllCouriersResponse> {
         
-        return this.request.makeRequest<DetectCourierResponse>({url: `/tracking/2024-04/couriers/detect`, method: "POST", body, headers, request_legacy_tag: "tracking", response_legacy_tag: "", is_paging: false})
+        return this.request.makeRequest<GetAllCouriersResponse>({url: `/tracking/2024-04/couriers/all`, method: "GET", headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
     }
     /**
      * Return a list of .
@@ -31,10 +31,10 @@ export class CourierApi {
         return this.request.makeRequest<GetUserCouriersResponse>({url: `/tracking/2024-04/couriers`, method: "GET", headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
     }
     /**
-     * Return a list of all couriers.
+     * Return a list of matched couriers based on tracking number format and  or a list of couriers.
      */
-    public async getAllCouriers( headers?: {[key: string]: any}): Promise<GetAllCouriersResponse> {
+    public async detectCourier(body: TrackingDetectCourierRequest, headers?: {[key: string]: any}): Promise<DetectCourierResponse> {
         
-        return this.request.makeRequest<GetAllCouriersResponse>({url: `/tracking/2024-04/couriers/all`, method: "GET", headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
+        return this.request.makeRequest<DetectCourierResponse>({url: `/tracking/2024-04/couriers/detect`, method: "POST", body, headers, request_legacy_tag: "tracking", response_legacy_tag: "", is_paging: false})
     }
 }
