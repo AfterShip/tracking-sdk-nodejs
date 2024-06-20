@@ -9,7 +9,7 @@ entry {
                     gitRepoName              : "tracking-sdk-nodejs.git",
                     chartName                : "",
                     essentialDockerImage     : "nodejs-essential",
-                    essentialTag             : "nodejs-16.13.0",
+                    essentialTag             : "nodejs-18.18.2",
                     requireStaticAsset       : false,
                     uploadAssetCredential    : "",
                     domainType               : "",
