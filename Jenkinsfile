@@ -21,7 +21,6 @@ entry {
                     useNPM                   : false,
                     npmPackageOnly           : true,
                     prePublishScript         : "yarn build",
-                    prePublishScript         : "",
                     optionsForAftershipPublish : ""
             ]
 }
