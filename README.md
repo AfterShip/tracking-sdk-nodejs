@@ -158,20 +158,20 @@ The AfterShip instance has the following properties which are exactly the same a
 
 ```javascript
 const payload = {
-    'slug': 'usps',
-    'tracking_number': '9261290284678900371871',
-    'title': 'Title Name',
-    'smses': [
+    slug: 'usps',
+    tracking_number: '9261290284678900371871',
+    title: 'Title Name',
+    smses: [
         '+18555072509',
         '+18555072501'
     ],
-    'emails': [
+    emails: [
         'email@yourdomain.com',
         'another_email@yourdomain.com'
     ],
-    'order_id': 'ID 1234',
-    'order_id_path': 'http://www.aftership.com/order_id=1234',
-    'custom_fields': {
+    order_id: 'ID 1234',
+    order_id_path: 'http://www.aftership.com/order_id=1234',
+    custom_fields: {
         'product_name': 'iPhone Case',
         'product_price': 'USD19.99'
     }
