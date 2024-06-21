@@ -48,7 +48,7 @@ npm install --save @aftership/tracking-sdk
 // Step 1: Require the AfterShip client
 import {AfterShip} from '@aftership/tracking-sdk';
 // or
-const {AfterShip} = require('@aftership/tracking-sdk');
+// const {AfterShip} = require('@aftership/tracking-sdk');
 
 
 // Step 2: Initialize the client object
@@ -210,27 +210,6 @@ aftership.tracking
     .catch((e) => console.log(e));
 ```
 
-```javascript
-// GET /trackings/:slug/:tracking_number?tracking_postal_code=:postal_code&tracking_ship_date=:ship_date
-aftership.tracking
-    .getTrackingBySlugTrackingNumber('dhl-global-mail', '420028359261290339630717209661', {
-        tracking_postal_code: "1234",
-        tracking_ship_date: "20200423",
-    })
-    .then((result) => console.log(result))
-    .catch((e) => console.log(e));
-```
-
-
-> Pro Tip: You can always use /:id to replace /:slug/:tracking_number.
-```javascript
-// GET /trackings/:id
-aftership.tracking
-    .getTrackingById('hqhyzb21sm0colweuats7001')
-    .then((result) => console.log(result))
-    .catch((e) => console.log(e));
-```
-
 **PUT** /trackings/:id
 
 ```javascript
@@ -313,8 +292,8 @@ aftership.notification
 ```javascript
 aftership.notification
     .addNotificationByTrackingId('g0qe97idgrrbrlwiyvzco018',{
-        'emails': 'user1@gmail.com,user2@gmail.com,invalid EMail @ Gmail. com',
-        'smses': '+85291239123,+85261236123,Invalid Mobile Phone Number'
+        'emails': ['user1@gmail.com', 'user2@gmail.com'],
+        'smses': ['+85291239123', '+85261236123']
     })
     .then(result => console.log(result))
     .catch(e => console.log(e));
@@ -325,8 +304,8 @@ aftership.notification
 ```javascript
 aftership.notification
     .deleteNotificationByTrackingId('g0qe97idgrrbrlwiyvzco018',{
-        'emails': 'user1@gmail.com',
-        'smses': '+85291239123'
+        'emails': ['user1@gmail.com'],
+        'smses': ['+85291239123']
     })
     .then(result => console.log(result))
     .catch(e => console.log(e));
