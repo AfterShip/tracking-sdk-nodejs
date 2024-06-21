@@ -2,7 +2,7 @@
 
 This library allows you to quickly and easily use the AfterShip Tracking API via Node.js.
 
-For updates to this library, see our GitHub release page.
+For updates to this library, see our [GitHub release page](https://github.com/AfterShip/tracking-sdk-nodejs/releases).
 
 If you need support using AfterShip products, please contact support@aftership.com.
 
@@ -40,7 +40,7 @@ Before you begin to integrate:
 
 ### Installation
 ```bash
-npm install --save aftership
+npm install --save @aftership/tracking-sdk
 ```
 
 ### Usage
@@ -48,7 +48,7 @@ npm install --save aftership
 // Step 1: Require the AfterShip client
 import {AfterShip} from '@aftership/tracking-sdk';
 // or
-const {AfterShip} = require('@aftership/tracking-sdk');
+// const {AfterShip} = require('@aftership/tracking-sdk');
 
 
 // Step 2: Initialize the client object
@@ -87,7 +87,7 @@ Create AfterShip instance with options
 ```javascript
 import {AfterShip, AuthType} from '@aftership/tracking-sdk';
 // or
-const {AfterShip, AuthType} = require('@aftership/tracking-sdk');
+// const {AfterShip, AuthType} = require('@aftership/tracking-sdk');
 
 const aftership = new AfterShip(
     {
@@ -146,10 +146,10 @@ The SDK will return an error object when there is any error during the request, 
 
 The AfterShip instance has the following properties which are exactly the same as the API endpoints:
 
-courier - Get a list of our supported couriers.
-tracking - Create trackings, update trackings, and get tracking results.
-last_checkpoint - Get tracking information of the last checkpoint of a tracking.
-notification - Get, add or remove contacts (sms or email) to be notified when the status of a tracking has changed.
+- courier - Get a list of our supported couriers.
+- tracking - Create trackings, update trackings, and get tracking results.
+- last_checkpoint - Get tracking information of the last checkpoint of a tracking.
+- notification - Get, add or remove contacts (sms or email) to be notified when the status of a tracking has changed.
 
 
 ### /trackings
@@ -158,20 +158,20 @@ notification - Get, add or remove contacts (sms or email) to be notified when th
 
 ```javascript
 const payload = {
-    'slug': 'usps',
-    'tracking_number': '9261290284678900371871',
-    'title': 'Title Name',
-    'smses': [
+    slug: 'usps',
+    tracking_number: '9261290284678900371871',
+    title: 'Title Name',
+    smses: [
         '+18555072509',
         '+18555072501'
     ],
-    'emails': [
+    emails: [
         'email@yourdomain.com',
         'another_email@yourdomain.com'
     ],
-    'order_id': 'ID 1234',
-    'order_id_path': 'http://www.aftership.com/order_id=1234',
-    'custom_fields': {
+    order_id: 'ID 1234',
+    order_id_path: 'http://www.aftership.com/order_id=1234',
+    custom_fields: {
         'product_name': 'iPhone Case',
         'product_price': 'USD19.99'
     }
@@ -206,27 +206,6 @@ aftership.tracking
 ```javascript
 aftership.tracking
     .getTrackingById('rft4xu2rs1um1lwhm8j1p02r')
-    .then((result) => console.log(result))
-    .catch((e) => console.log(e));
-```
-
-```javascript
-// GET /trackings/:slug/:tracking_number?tracking_postal_code=:postal_code&tracking_ship_date=:ship_date
-aftership.tracking
-    .getTrackingBySlugTrackingNumber('dhl-global-mail', '420028359261290339630717209661', {
-        tracking_postal_code: "1234",
-        tracking_ship_date: "20200423",
-    })
-    .then((result) => console.log(result))
-    .catch((e) => console.log(e));
-```
-
-
-> Pro Tip: You can always use /:id to replace /:slug/:tracking_number.
-```javascript
-// GET /trackings/:id
-aftership.tracking
-    .getTrackingById('hqhyzb21sm0colweuats7001')
     .then((result) => console.log(result))
     .catch((e) => console.log(e));
 ```
@@ -313,8 +292,8 @@ aftership.notification
 ```javascript
 aftership.notification
     .addNotificationByTrackingId('g0qe97idgrrbrlwiyvzco018',{
-        'emails': 'user1@gmail.com,user2@gmail.com,invalid EMail @ Gmail. com',
-        'smses': '+85291239123,+85261236123,Invalid Mobile Phone Number'
+        'emails': ['user1@gmail.com', 'user2@gmail.com'],
+        'smses': ['+85291239123', '+85261236123']
     })
     .then(result => console.log(result))
     .catch(e => console.log(e));
@@ -325,8 +304,8 @@ aftership.notification
 ```javascript
 aftership.notification
     .deleteNotificationByTrackingId('g0qe97idgrrbrlwiyvzco018',{
-        'emails': 'user1@gmail.com',
-        'smses': '+85291239123'
+        'emails': ['user1@gmail.com'],
+        'smses': ['+85291239123']
     })
     .then(result => console.log(result))
     .catch(e => console.log(e));
