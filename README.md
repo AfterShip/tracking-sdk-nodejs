@@ -146,10 +146,10 @@ The SDK will return an error object when there is any error during the request, 
 
 The AfterShip instance has the following properties which are exactly the same as the API endpoints:
 
-courier - Get a list of our supported couriers.
-tracking - Create trackings, update trackings, and get tracking results.
-last_checkpoint - Get tracking information of the last checkpoint of a tracking.
-notification - Get, add or remove contacts (sms or email) to be notified when the status of a tracking has changed.
+- courier - Get a list of our supported couriers.
+- tracking - Create trackings, update trackings, and get tracking results.
+- last_checkpoint - Get tracking information of the last checkpoint of a tracking.
+- notification - Get, add or remove contacts (sms or email) to be notified when the status of a tracking has changed.
 
 
 ### /trackings
