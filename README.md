@@ -2,7 +2,7 @@
 
 This library allows you to quickly and easily use the AfterShip Tracking API via Node.js.
 
-For updates to this library, see our GitHub release page.
+For updates to this library, see our [GitHub release page](https://github.com/AfterShip/tracking-sdk-nodejs/releases).
 
 If you need support using AfterShip products, please contact support@aftership.com.
 
