@@ -87,7 +87,7 @@ Create AfterShip instance with options
 ```javascript
 import {AfterShip, AuthType} from '@aftership/tracking-sdk';
 // or
-const {AfterShip, AuthType} = require('@aftership/tracking-sdk');
+// const {AfterShip, AuthType} = require('@aftership/tracking-sdk');
 
 const aftership = new AfterShip(
     {
