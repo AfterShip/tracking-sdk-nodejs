@@ -40,7 +40,7 @@ Before you begin to integrate:
 
 ### Installation
 ```bash
-npm install --save aftership
+npm install --save @aftership/tracking-sdk
 ```
 
 ### Usage
