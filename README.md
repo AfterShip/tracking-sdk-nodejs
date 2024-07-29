@@ -11,6 +11,7 @@ If you need support using AfterShip products, please contact support@aftership.c
 - [AfterShip Tracking API library for Node.js](#aftership-tracking-api-library-for-nodejs)
   - [Table of Contents](#table-of-contents)
   - [Before you begin](#before-you-begin)
+    - [API and SDK Version](#api-and-sdk-version) 
   - [Quick Start](#quick-start)
     - [Installation](#installation)
   - [Constructor](#constructor)
@@ -33,6 +34,17 @@ Before you begin to integrate:
 - [Create an AfterShip account](https://admin.aftership.com/).
 - [Create an API key](https://organization.automizely.com/api-keys).
 - [Install Node.js](https://nodejs.org/en/download/) version 16 or later.
+
+### API and SDK Version
+
+Each SDK version is designed to work with a specific API version. Please refer to the table below to identify the supported API versions for each SDK version, ensuring you select the appropriate SDK version for the API version you intend to use.
+
+| SDK Version | Supported API Version | Branch |
+| --- | --- | --- |
+| 10.x.x | 2024-07 | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2024-07 |
+| 9.x.x | 2024-04 | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2024-04 |
+| 8.x.x | 2023-10 | https://github.com/AfterShip/aftership-sdk-nodejs |
+| <=7.x.x | Legacy API | https://github.com/AfterShip/aftership-sdk-nodejs |
 
 ## Quick Start
 
