@@ -21,7 +21,7 @@ import { parseProxy } from "./utils/parse_proxy";
 export interface Options {
     auth_type?: AuthType;
     api_key?: string;
-    api_secrect?: string;
+    api_secret?: string;
     domain?: string;
     max_retry?: number;
     timeout?: number;
@@ -43,8 +43,8 @@ export class AfterShip {
         if (this.options.api_key === undefined) {
             this.options.api_key = process.env[`${SDK_ENV_PREFIX}_API_KEY`];
         }
-        if (this.options.api_secrect === undefined) {
-            this.options.api_secrect = process.env[`${SDK_ENV_PREFIX}_API_SECRET`];
+        if (this.options.api_secret === undefined) {
+            this.options.api_secret = process.env[`${SDK_ENV_PREFIX}_API_SECRET`];
         }
         if (this.options.user_agent === undefined) {
             this.options.user_agent = process.env[`${SDK_ENV_PREFIX}_USER_AGENT`];
@@ -89,7 +89,7 @@ export class AfterShip {
         const request = new Request({
             auth_type: this.options.auth_type,
             api_key: this.options.api_key,
-            api_secrect: this.options.api_secrect,
+            api_secret: this.options.api_secret,
             domain: this.options.domain,
             max_retry: this.options.max_retry,
             timeout: this.options.timeout,
@@ -111,8 +111,8 @@ export class AfterShip {
         if (
             (this.options.auth_type === AuthType.AES ||
                 this.options.auth_type === AuthType.RSA) &&
-            (this.options.api_secrect === undefined ||
-                this.options.api_secrect === "")
+            (this.options.api_secret === undefined ||
+                this.options.api_secret === "")
         ) {
             throw new AftershipError(
                 `Invalid option: auth_type`,
