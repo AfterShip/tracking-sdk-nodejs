@@ -15,7 +15,7 @@ export const DEFAULT_TIMEOUT = 10000;
 export const DEFAULT_MAX_RETRY = 3;
 export const MAX_MAX_RETRY = 10;
 export const MIN_MAX_RETRY = 0;
-export const DEFAULT_USER_AGENT = "tracking-sdk-nodejs/10.0.0 (https://www.aftership.com) axios/1.7.2";
+export const DEFAULT_USER_AGENT = "tracking-sdk-nodejs/10.0.1 (https://www.aftership.com) axios/1.7.2";
 
 type ResponseData = {
     meta: {
@@ -40,7 +40,7 @@ export interface RequestConfig {
 export interface RequestOptions {
     auth_type: string;
     api_key?: string;
-    api_secrect?: string;
+    api_secret?: string;
     domain: string;
     max_retry: number;
     timeout: number;
@@ -78,12 +78,12 @@ export class Request {
             headers[header_keys] = Authentication.sign({
                 method: config.method,
                 url: config.url,
-                body: config.body,
+                body: JSON.stringify(config.body),
                 content_type,
                 query: config.query,
                 auth_type: this.options.auth_type,
                 date: date_now,
-                private_key: this.options.api_secrect,
+                private_key: this.options.api_secret,
                 headers,
             });
             headers["date"] = date_now;
@@ -132,19 +132,9 @@ export class Request {
 
     private async withRetry<T>(requestConfig: AxiosRequestConfig, retry: number = 0): Promise<T> {
         try {
-            if (this.ratelimit.isExceeded()) {
-                throw new AftershipError(
-                    "You have exceeded the API call rate limit. The default limit is 10 requests per second.",
-                    AfterShipErrorCodes.RATE_LIMIT_EXCEED
-                );
-            }
             const response = await axios<T>(requestConfig);
-            this.setRateLimit(response.headers);
             return response.data;
         } catch (error: any) {
-            if (error.response && error.response.headers) {
-                this.setRateLimit(error.response.headers);
-            }
             if (this.shouldRetry(error) && retry < this.options.max_retry) {
                 await this.delayWithJitter(retry);
                 retry++;
@@ -155,6 +145,7 @@ export class Request {
     }
 
     public async makeRequest<T>(config: RequestConfig): Promise<T> {
+        config.body = this.handleRequestData(config.request_legacy_tag, config.body)
         const headers = this.getHeaders(config);
         try {
             const response = await this.withRetry<ResponseData>(
@@ -165,7 +156,7 @@ export class Request {
                     params: config.query,
                     validateStatus: (status) => status >= 200 && status < 400,
                     baseURL: this.options.domain,
-                    data: this.handleRequestData(config.request_legacy_tag, config.body),
+                    data: config.body,
                     timeout: this.options.timeout,
                     proxy: this.options.proxy,
                 }

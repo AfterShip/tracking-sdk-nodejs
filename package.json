@@ -1,6 +1,6 @@
 {
   "name": "@aftership/tracking-sdk",
-  "version": "10.0.0",
+  "version": "0.0.0",
   "description": "Tracking NodeJS SDK",
   "main": "dist/aftership.js",
   "types": "dist/aftership.d.ts",
