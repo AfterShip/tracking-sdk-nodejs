@@ -3,10 +3,10 @@
  * Do not edit the class manually.
  */
 import { TrackingApi } from "./api/Tracking";
-import { CourierApi } from "./api/Courier";
 import { NotificationApi } from "./api/Notification";
-import { EstimatedDeliveryDateApi } from "./api/EstimatedDeliveryDate";
 import { LastCheckpointApi } from "./api/LastCheckpoint";
+import { EstimatedDeliveryDateApi } from "./api/EstimatedDeliveryDate";
+import { CourierApi } from "./api/Courier";
 import { AftershipError, AfterShipErrorCodes } from "./error";
 import { AuthType } from "./lib/authentication";
 import {
@@ -23,7 +23,7 @@ import { parseProxy } from "./utils/parse_proxy";
 export interface Options {
     auth_type?: AuthType;
     api_key?: string;
-    api_secrect?: string;
+    api_secret?: string;
     domain?: string;
     max_retry?: number;
     timeout?: number;
@@ -35,10 +35,10 @@ const SDK_ENV_PREFIX = "AFTERSHIP_TRACKING_SDK";
 
 export class AfterShip {
     public readonly tracking: TrackingApi;
-    public readonly courier: CourierApi;
     public readonly notification: NotificationApi;
-    public readonly estimatedDeliveryDate: EstimatedDeliveryDateApi;
     public readonly lastCheckpoint: LastCheckpointApi;
+    public readonly estimatedDeliveryDate: EstimatedDeliveryDateApi;
+    public readonly courier: CourierApi;
     private readonly options: Options;
 
     constructor(options?: Options) {
@@ -47,8 +47,8 @@ export class AfterShip {
         if (this.options.api_key === undefined) {
             this.options.api_key = process.env[`${SDK_ENV_PREFIX}_API_KEY`];
         }
-        if (this.options.api_secrect === undefined) {
-            this.options.api_secrect = process.env[`${SDK_ENV_PREFIX}_API_SECRET`];
+        if (this.options.api_secret === undefined) {
+            this.options.api_secret = process.env[`${SDK_ENV_PREFIX}_API_SECRET`];
         }
         if (this.options.user_agent === undefined) {
             this.options.user_agent = process.env[`${SDK_ENV_PREFIX}_USER_AGENT`];
@@ -93,7 +93,7 @@ export class AfterShip {
         const request = new Request({
             auth_type: this.options.auth_type,
             api_key: this.options.api_key,
-            api_secrect: this.options.api_secrect,
+            api_secret: this.options.api_secret,
             domain: this.options.domain,
             max_retry: this.options.max_retry,
             timeout: this.options.timeout,
@@ -101,10 +101,10 @@ export class AfterShip {
             proxy: parseProxy(this.options.proxy),
         });
         this.tracking = new TrackingApi(request);
-        this.courier = new CourierApi(request);
         this.notification = new NotificationApi(request);
-        this.estimatedDeliveryDate = new EstimatedDeliveryDateApi(request);
         this.lastCheckpoint = new LastCheckpointApi(request);
+        this.estimatedDeliveryDate = new EstimatedDeliveryDateApi(request);
+        this.courier = new CourierApi(request);
     }
 
     private validateOptions() {
@@ -117,8 +117,8 @@ export class AfterShip {
         if (
             (this.options.auth_type === AuthType.AES ||
                 this.options.auth_type === AuthType.RSA) &&
-            (this.options.api_secrect === undefined ||
-                this.options.api_secrect === "")
+            (this.options.api_secret === undefined ||
+                this.options.api_secret === "")
         ) {
             throw new AftershipError(
                 `Invalid option: auth_type`,

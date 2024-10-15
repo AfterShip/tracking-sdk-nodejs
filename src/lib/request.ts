@@ -40,7 +40,7 @@ export interface RequestConfig {
 export interface RequestOptions {
     auth_type: string;
     api_key?: string;
-    api_secrect?: string;
+    api_secret?: string;
     domain: string;
     max_retry: number;
     timeout: number;
@@ -78,12 +78,12 @@ export class Request {
             headers[header_keys] = Authentication.sign({
                 method: config.method,
                 url: config.url,
-                body: config.body,
+                body: JSON.stringify(config.body),
                 content_type,
                 query: config.query,
                 auth_type: this.options.auth_type,
                 date: date_now,
-                private_key: this.options.api_secrect,
+                private_key: this.options.api_secret,
                 headers,
             });
             headers["date"] = date_now;
@@ -155,6 +155,7 @@ export class Request {
     }
 
     public async makeRequest<T>(config: RequestConfig): Promise<T> {
+        config.body = this.handleRequestData(config.request_legacy_tag, config.body)
         const headers = this.getHeaders(config);
         try {
             const response = await this.withRetry<ResponseData>(
@@ -165,7 +166,7 @@ export class Request {
                     params: config.query,
                     validateStatus: (status) => status >= 200 && status < 400,
                     baseURL: this.options.domain,
-                    data: this.handleRequestData(config.request_legacy_tag, config.body),
+                    data: config.body,
                     timeout: this.options.timeout,
                     proxy: this.options.proxy,
                 }
