@@ -190,7 +190,7 @@ aftership.tracking
 
 ```javascript
 aftership.tracking
-    .getTrackings({ page: 1, limit: 10, fields: 'slug,tracking_number' })
+    .getTrackings({ limit: 10, fields: 'slug,tracking_number' })
     .then((result) => console.log(result))
     .catch((e) => console.log(e));
 ```
