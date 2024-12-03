@@ -3,6 +3,7 @@
  * Do not edit the class manually.
  */
 import crypto from "crypto";
+import querystring from "querystring";
 
 const SEPERATOR = "\n";
 
@@ -90,7 +91,7 @@ export class Authentication {
             if (k.startsWith("as")) {
                 const header_value = headers[k];
                 concatenate_headers.push(
-                    `${k.trim()}:${header_value ? header_value.trim() : ""}`
+                    `${k.trim()}:${header_value ? header_value.toString().trim() : ""}`
                 );
             }
         }
@@ -103,9 +104,11 @@ export class Authentication {
             const concatenate_querys: string[] = [];
             if (query_keys.length) {
                 for (const k of query_keys) {
-                    const qeury_value = query[k];
+                    let qeury_value = query[k];
+                    qeury_value = qeury_value ? qeury_value.toString().trim() : "";
+                    qeury_value = querystring.escape(qeury_value)
                     concatenate_querys.push(
-                        `${k.trim()}=${qeury_value ? qeury_value.trim() : ""}`
+                      `${k.trim()}=${qeury_value}`,
                     );
                 }
             }
