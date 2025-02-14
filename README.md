@@ -40,6 +40,7 @@ Each SDK version is designed to work with a specific API version. Please refer t
 
 | SDK Version | Supported API Version | Branch                                                        |
 | ----------- | --------------------- | ------------------------------------------------------------- |
+| 12.x.x      | 2025-01               | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2025-01 |
 | 11.x.x      | 2024-10               | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2024-10 |
 | 10.x.x      | 2024-07               | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2024-07 |
 | 9.x.x       | 2024-04               | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2024-04 |
