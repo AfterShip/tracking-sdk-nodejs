@@ -4,5 +4,7 @@
  */
 export interface GetCourierConnectionsQuery {
     courier_slug?: string;
+    cursor?: string;
+    limit?: string;
 }
 

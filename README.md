@@ -22,6 +22,7 @@ If you need support using AfterShip products, please contact support@aftership.c
   - [Endpoints](#endpoints)
     - [/trackings](#trackings)
     - [/couriers](#couriers)
+    - [/courier-connections](#courier-connections)
     - [/estimated-delivery-date](#estimated-delivery-date)
   - [Help](#help)
   - [License](#license)
@@ -98,7 +99,7 @@ aftership.tracking.createTracking(createTrackingRequestBody)
 
 ## Rate Limiter
 
-See the [Rate Limit](https://www.aftership.com/docs/tracking/2024-04/quickstart/rate-limit) to understand the AfterShip rate limit policy.
+See the [Rate Limit](https://www.aftership.com/docs/tracking/2025-04/quickstart/rate-limit) to understand the AfterShip rate limit policy.
 
 ## Error Handling
 
@@ -245,6 +246,51 @@ aftership.courier
     .catch(e => console.log(e));
 ```
 
+### /courier-connections
+**GET** /courier-connections
+
+```javascript
+aftership.courier
+    .getCourierConnections()
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
+
+**POST** /courier-connections
+
+```js
+aftership.courier
+    .postCourierConnections({courier_slug: "dhl-api", credentials: {"api_key": "<api_key>"}})
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
+
+**GET** /courier-connections/:id
+
+```js
+aftership.courier
+    .getCourierConnectionsById("<courier_connection_id>")
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
+
+**PATCH** /courier-connections/:id
+
+```js
+aftership.courier
+    .putCourierConnectionsById("<courier_connection_id>", {credentials: {"api_key": "<api_key>"}})
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
+
+**DELETE** /courier-connections/:id
+
+```js
+aftership.courier
+    .deleteCourierConnectionsById("<courier_connection_id>")
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
 
 ### /estimated-delivery-date
 
@@ -264,6 +310,20 @@ aftership.estimatedDeliveryDate
     .catch(e => console.log(e));
 ```
 
+**POST** /estimated-delivery-date/predict
+
+```javascript
+const payload = {
+    slug: '<slug>',
+    origin_address: { country: '<country>' },
+    destination_address: { country: '<country>' },
+};
+aftership.estimatedDeliveryDate
+    .predict(payload)
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
+
 
 ## Help
 
@@ -273,9 +333,6 @@ If you get stuck, we're here to help:
 - Contact AfterShip official support via support@aftership.com
 
 ## License
-Copyright (c) 2025 AfterShip
-
-Licensed under the MIT license.# License
 Copyright (c) 2025 AfterShip
 
 Licensed under the MIT license.

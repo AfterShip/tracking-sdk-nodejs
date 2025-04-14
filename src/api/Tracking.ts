@@ -4,18 +4,18 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
-import { MarkTrackingCompletedByIdRequest } from "../model/MarkTrackingCompletedByIdRequest";
-import { MarkTrackingCompletedByIdResponse } from "../model/MarkTrackingCompletedByIdResponse";
-import { GetTrackingsQuery } from "../model/GetTrackingsQuery";
-import { GetTrackingsResponse } from "../model/GetTrackingsResponse";
 import { UpdateTrackingByIdRequest } from "../model/UpdateTrackingByIdRequest";
 import { UpdateTrackingByIdResponse } from "../model/UpdateTrackingByIdResponse";
-import { RetrackTrackingByIdResponse } from "../model/RetrackTrackingByIdResponse";
 import { GetTrackingByIdQuery } from "../model/GetTrackingByIdQuery";
 import { GetTrackingByIdResponse } from "../model/GetTrackingByIdResponse";
-import { DeleteTrackingByIdResponse } from "../model/DeleteTrackingByIdResponse";
+import { GetTrackingsQuery } from "../model/GetTrackingsQuery";
+import { GetTrackingsResponse } from "../model/GetTrackingsResponse";
 import { CreateTrackingRequest } from "../model/CreateTrackingRequest";
 import { CreateTrackingResponse } from "../model/CreateTrackingResponse";
+import { DeleteTrackingByIdResponse } from "../model/DeleteTrackingByIdResponse";
+import { RetrackTrackingByIdResponse } from "../model/RetrackTrackingByIdResponse";
+import { MarkTrackingCompletedByIdRequest } from "../model/MarkTrackingCompletedByIdRequest";
+import { MarkTrackingCompletedByIdResponse } from "../model/MarkTrackingCompletedByIdResponse";
 
 export class TrackingApi {
     private readonly request: Request;
@@ -24,26 +24,6 @@ export class TrackingApi {
         this.request = request;
     }
 
-    /**
-     * Mark a tracking as completed. The tracking won&#39;t auto update until retrack it.
-     */
-    public async markTrackingCompletedById(id: string, body: MarkTrackingCompletedByIdRequest, headers?: {[key: string]: any}): Promise<MarkTrackingCompletedByIdResponse> {
-        if (!id) {
-            throw new AftershipError(
-                "Invalid params: id",
-                AfterShipErrorCodes.VALUE_INVALID
-            );
-        }
-        
-        return this.request.makeRequest<MarkTrackingCompletedByIdResponse>({url: `/tracking/2025-04/trackings/${id}/mark-as-completed`, method: "POST", body, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
-    }
-    /**
-     * Get tracking results of multiple trackings.&lt;div style=&#34;visibility:hidden; height: 0&#34;&gt;&lt;/div&gt;
-     */
-    public async getTrackings(query?: GetTrackingsQuery, headers?: {[key: string]: any}): Promise<GetTrackingsResponse> {
-        
-        return this.request.makeRequest<GetTrackingsResponse>({url: `/tracking/2025-04/trackings`, method: "GET", query, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: true})
-    }
     /**
      * Update a tracking.
      */
@@ -56,19 +36,6 @@ export class TrackingApi {
         }
         
         return this.request.makeRequest<UpdateTrackingByIdResponse>({url: `/tracking/2025-04/trackings/${id}`, method: "PUT", body, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
-    }
-    /**
-     * Retrack an expired tracking. Max 3 times per tracking.
-     */
-    public async retrackTrackingById(id: string,  headers?: {[key: string]: any}): Promise<RetrackTrackingByIdResponse> {
-        if (!id) {
-            throw new AftershipError(
-                "Invalid params: id",
-                AfterShipErrorCodes.VALUE_INVALID
-            );
-        }
-        
-        return this.request.makeRequest<RetrackTrackingByIdResponse>({url: `/tracking/2025-04/trackings/${id}/retrack`, method: "POST", headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
     }
     /**
      * Get tracking results of a single tracking.
@@ -84,6 +51,20 @@ export class TrackingApi {
         return this.request.makeRequest<GetTrackingByIdResponse>({url: `/tracking/2025-04/trackings/${id}`, method: "GET", query, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
     }
     /**
+     * Get tracking results of multiple trackings.&lt;div style=&#34;visibility:hidden; height: 0&#34;&gt;&lt;/div&gt;
+     */
+    public async getTrackings(query?: GetTrackingsQuery, headers?: {[key: string]: any}): Promise<GetTrackingsResponse> {
+        
+        return this.request.makeRequest<GetTrackingsResponse>({url: `/tracking/2025-04/trackings`, method: "GET", query, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: true})
+    }
+    /**
+     * Create a tracking.&lt;div style=&#34;visibility:hidden; height: 0&#34;&gt;&lt;/div&gt;
+     */
+    public async createTracking(body: CreateTrackingRequest, headers?: {[key: string]: any}): Promise<CreateTrackingResponse> {
+        
+        return this.request.makeRequest<CreateTrackingResponse>({url: `/tracking/2025-04/trackings`, method: "POST", body, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
+    }
+    /**
      * Delete a tracking.
      */
     public async deleteTrackingById(id: string,  headers?: {[key: string]: any}): Promise<DeleteTrackingByIdResponse> {
@@ -97,10 +78,29 @@ export class TrackingApi {
         return this.request.makeRequest<DeleteTrackingByIdResponse>({url: `/tracking/2025-04/trackings/${id}`, method: "DELETE", headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
     }
     /**
-     * Create a tracking.&lt;div style=&#34;visibility:hidden; height: 0&#34;&gt;&lt;/div&gt;
+     * Retrack an expired tracking. Max 3 times per tracking.
      */
-    public async createTracking(body: CreateTrackingRequest, headers?: {[key: string]: any}): Promise<CreateTrackingResponse> {
+    public async retrackTrackingById(id: string,  headers?: {[key: string]: any}): Promise<RetrackTrackingByIdResponse> {
+        if (!id) {
+            throw new AftershipError(
+                "Invalid params: id",
+                AfterShipErrorCodes.VALUE_INVALID
+            );
+        }
         
-        return this.request.makeRequest<CreateTrackingResponse>({url: `/tracking/2025-04/trackings`, method: "POST", body, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
+        return this.request.makeRequest<RetrackTrackingByIdResponse>({url: `/tracking/2025-04/trackings/${id}/retrack`, method: "POST", headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
+    }
+    /**
+     * Mark a tracking as completed. The tracking won&#39;t auto update until retrack it.
+     */
+    public async markTrackingCompletedById(id: string, body: MarkTrackingCompletedByIdRequest, headers?: {[key: string]: any}): Promise<MarkTrackingCompletedByIdResponse> {
+        if (!id) {
+            throw new AftershipError(
+                "Invalid params: id",
+                AfterShipErrorCodes.VALUE_INVALID
+            );
+        }
+        
+        return this.request.makeRequest<MarkTrackingCompletedByIdResponse>({url: `/tracking/2025-04/trackings/${id}/mark-as-completed`, method: "POST", body, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
     }
 }

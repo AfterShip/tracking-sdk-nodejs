@@ -6,12 +6,12 @@ import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
 import { GetCourierConnectionsQuery } from "../model/GetCourierConnectionsQuery";
 import { GetCourierConnectionsResponse } from "../model/GetCourierConnectionsResponse";
-import { GetCourierConnectionsByIdResponse } from "../model/GetCourierConnectionsByIdResponse";
 import { DeleteCourierConnectionsByIdResponse } from "../model/DeleteCourierConnectionsByIdResponse";
-import { PostCourierConnectionsRequest } from "../model/PostCourierConnectionsRequest";
-import { PostCourierConnectionsResponse } from "../model/PostCourierConnectionsResponse";
+import { GetCourierConnectionsByIdResponse } from "../model/GetCourierConnectionsByIdResponse";
 import { PutCourierConnectionsByIdRequest } from "../model/PutCourierConnectionsByIdRequest";
 import { PutCourierConnectionsByIdResponse } from "../model/PutCourierConnectionsByIdResponse";
+import { PostCourierConnectionsRequest } from "../model/PostCourierConnectionsRequest";
+import { PostCourierConnectionsResponse } from "../model/PostCourierConnectionsResponse";
 
 export class CourierConnectionApi {
     private readonly request: Request;
@@ -28,19 +28,6 @@ export class CourierConnectionApi {
         return this.request.makeRequest<GetCourierConnectionsResponse>({url: `/tracking/2025-04/courier-connections`, method: "GET", query, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: true})
     }
     /**
-     * Get courier connection results of a single courier connection.
-     */
-    public async getCourierConnectionsById(id: string,  headers?: {[key: string]: any}): Promise<GetCourierConnectionsByIdResponse> {
-        if (!id) {
-            throw new AftershipError(
-                "Invalid params: id",
-                AfterShipErrorCodes.VALUE_INVALID
-            );
-        }
-        
-        return this.request.makeRequest<GetCourierConnectionsByIdResponse>({url: `/tracking/2025-04/courier-connections/${id}`, method: "GET", headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
-    }
-    /**
      * Delete a courier connection.
      */
     public async deleteCourierConnectionsById(id: string,  headers?: {[key: string]: any}): Promise<DeleteCourierConnectionsByIdResponse> {
@@ -54,11 +41,17 @@ export class CourierConnectionApi {
         return this.request.makeRequest<DeleteCourierConnectionsByIdResponse>({url: `/tracking/2025-04/courier-connections/${id}`, method: "DELETE", headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
     }
     /**
-     * 
+     * Get courier connection results of a single courier connection.
      */
-    public async postCourierConnections(body: PostCourierConnectionsRequest, headers?: {[key: string]: any}): Promise<PostCourierConnectionsResponse> {
+    public async getCourierConnectionsById(id: string,  headers?: {[key: string]: any}): Promise<GetCourierConnectionsByIdResponse> {
+        if (!id) {
+            throw new AftershipError(
+                "Invalid params: id",
+                AfterShipErrorCodes.VALUE_INVALID
+            );
+        }
         
-        return this.request.makeRequest<PostCourierConnectionsResponse>({url: `/tracking/2025-04/courier-connections`, method: "POST", body, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
+        return this.request.makeRequest<GetCourierConnectionsByIdResponse>({url: `/tracking/2025-04/courier-connections/${id}`, method: "GET", headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
     }
     /**
      * Update a courier connection.
@@ -72,5 +65,12 @@ export class CourierConnectionApi {
         }
         
         return this.request.makeRequest<PutCourierConnectionsByIdResponse>({url: `/tracking/2025-04/courier-connections/${id}`, method: "PATCH", body, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
+    }
+    /**
+     * 
+     */
+    public async postCourierConnections(body: PostCourierConnectionsRequest, headers?: {[key: string]: any}): Promise<PostCourierConnectionsResponse> {
+        
+        return this.request.makeRequest<PostCourierConnectionsResponse>({url: `/tracking/2025-04/courier-connections`, method: "POST", body, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
     }
 }
