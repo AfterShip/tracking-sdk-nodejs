@@ -3,7 +3,7 @@
  * Do not edit the class manually.
  */
 export interface Pagination {
-  total: number;
-  next_cursor: string;
-  has_next_page: boolean | null;
+    total: number;
+    next_cursor: string;
+    has_next_page: boolean | null;
 }
