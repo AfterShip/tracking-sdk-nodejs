@@ -4,10 +4,10 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
-import { GetCouriersQuery } from "../model/GetCouriersQuery";
-import { GetCouriersResponse } from "../model/GetCouriersResponse";
 import { DetectCourierRequest } from "../model/DetectCourierRequest";
 import { DetectCourierResponse } from "../model/DetectCourierResponse";
+import { GetCouriersQuery } from "../model/GetCouriersQuery";
+import { GetCouriersResponse } from "../model/GetCouriersResponse";
 
 export class CourierApi {
     private readonly request: Request;
@@ -17,17 +17,17 @@ export class CourierApi {
     }
 
     /**
-     * Return a list of couriers.
-     */
-    public async getCouriers(query?: GetCouriersQuery, headers?: {[key: string]: any}): Promise<GetCouriersResponse> {
-        
-        return this.request.makeRequest<GetCouriersResponse>({url: `/tracking/2025-04/couriers`, method: "GET", query, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
-    }
-    /**
      * Return a list of matched couriers based on tracking number format and  or a list of couriers.
      */
     public async detectCourier(body: DetectCourierRequest, headers?: {[key: string]: any}): Promise<DetectCourierResponse> {
         
         return this.request.makeRequest<DetectCourierResponse>({url: `/tracking/2025-04/couriers/detect`, method: "POST", body, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
+    }
+    /**
+     * Return a list of couriers.
+     */
+    public async getCouriers(query?: GetCouriersQuery, headers?: {[key: string]: any}): Promise<GetCouriersResponse> {
+        
+        return this.request.makeRequest<GetCouriersResponse>({url: `/tracking/2025-04/couriers`, method: "GET", query, headers, request_legacy_tag: "", response_legacy_tag: "", is_paging: false})
     }
 }

@@ -3,7 +3,7 @@
  * Do not edit the class manually.
  */
 
-export interface WeightEstimateddeliverydate {
+export interface WeightEstimatedDeliveryDateResponse {
     /**
      * The weight unit of the package. 
      */

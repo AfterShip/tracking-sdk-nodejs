@@ -148,6 +148,7 @@ The AfterShip instance has the following properties which are exactly the same a
 
 - courier - Get a list of our supported couriers.
 - tracking - Create trackings, update trackings, and get tracking results.
+- courier-connection - Create courier connections, update courier connections, and get courier connections results.
 - estimated-delivery-date - Get estimated delivery date for your order.
   
 ### /trackings
@@ -232,7 +233,7 @@ aftership.tracking
 
 ```javascript
 aftership.courier
-    .getUserCouriers()
+    .GetCouriers()
     .then(result => console.log(result))
     .catch(e => console.log(e));
 ```

@@ -3,7 +3,7 @@
  * Do not edit the class manually.
  */
 
-export interface OrderProcessingTimeEstimatedPickupEstimateddeliverydate {
+export interface OrderProcessingTimeEstimatedPickupEstimatedDeliveryDateRequest {
     /**
      * Processing time of an order, from being placed to being picked up. Only support day as value now.AfterShip will set day as the default value.
      */

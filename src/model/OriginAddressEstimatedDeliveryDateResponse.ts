@@ -3,7 +3,7 @@
  * Do not edit the class manually.
  */
 
-export interface OriginAddressEstimateddeliverydate2 {
+export interface OriginAddressEstimatedDeliveryDateResponse {
     /**
      * The country/region of the origin location from where the package is picked up by the carrier to be delivered to the final destination. Use 3 letters of ISO 3166-1 country/region code.
      */

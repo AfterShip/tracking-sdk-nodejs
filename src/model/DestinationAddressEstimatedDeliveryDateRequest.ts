@@ -3,7 +3,7 @@
  * Do not edit the class manually.
  */
 
-export interface DestinationAddressEstimateddeliverydate2 {
+export interface DestinationAddressEstimatedDeliveryDateRequest {
     /**
      * The country/region of the destination location where the package will be delivered. Use 3 letters of ISO 3166-1 country code.
      */
