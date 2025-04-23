@@ -3,6 +3,7 @@
  * Do not edit the class manually.
  */
 export interface GetTrackingByIdQuery {
-  fields?: string;
-  lang?: string;
+    fields?: string;
+    lang?: string;
 }
+

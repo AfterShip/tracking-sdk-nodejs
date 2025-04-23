@@ -5,12 +5,13 @@
 import { Courier } from "./Courier";
 
 export interface DetectCourierResponse {
-  /**
-   * Total count of courier objects
-   */
-  total?: number;
-  /**
-   * Array of  object.
-   */
-  couriers?: Courier[];
+    /**
+     * Total count of courier objects
+     */
+    total?: number;
+    /**
+     * Array of  object.
+     */
+    couriers?: Courier[];
 }
+

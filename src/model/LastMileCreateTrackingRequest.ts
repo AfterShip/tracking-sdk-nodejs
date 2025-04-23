@@ -4,12 +4,13 @@
  */
 
 export interface LastMileCreateTrackingRequest {
-  /**
-   * The tracking number of the last-mile carrier.
-   */
-  tracking_number: string;
-  /**
-   * The unique code of the carrier responsible for the last-mile of the shipment.  Find all the courier slugs .
-   */
-  slug?: string;
+    /**
+     * The tracking number of the last-mile carrier.
+     */
+    tracking_number: string;
+    /**
+     * The unique code of the carrier responsible for the last-mile of the shipment.  Find all the courier slugs .
+     */
+    slug?: string;
 }
+

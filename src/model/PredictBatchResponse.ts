@@ -5,8 +5,9 @@
 import { EstimatedDeliveryDateResponse } from "./EstimatedDeliveryDateResponse";
 
 export interface PredictBatchResponse {
-  /**
-   *
-   */
-  estimated_delivery_dates: EstimatedDeliveryDateResponse[];
+    /**
+     * 
+     */
+    estimated_delivery_dates: EstimatedDeliveryDateResponse[];
 }
+

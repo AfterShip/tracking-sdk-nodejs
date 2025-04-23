@@ -4,24 +4,29 @@
  */
 
 export interface LatestEstimatedDeliveryTracking {
-  /**
-   * The format of the EDD. Either a single date or a date range.
-   */
-  type?: string;
-  /**
-   * The source of the EDD. Either the carrier, AfterShip AI, or based on your custom EDD settings.
-   */
-  source?: string;
-  /**
-   * The latest EDD time.
-   */
-  datetime?: string;
-  /**
-   * For a date range EDD format, the date and time for the lower end of the range.
-   */
-  datetime_min?: string;
-  /**
-   * For a date range EDD format, the date and time for the upper end of the range.
-   */
-  datetime_max?: string;
+    /**
+     * The format of the EDD. Either a single date or a date range.
+     */
+    type?: string;
+    /**
+     * The source of the EDD. Either the carrier, AfterShip AI, or based on your custom EDD settings.
+     */
+    source?: string;
+    /**
+     * The latest EDD time.
+     */
+    datetime?: string;
+    /**
+     * For a date range EDD format, the date and time for the lower end of the range.
+     */
+    datetime_min?: string;
+    /**
+     * For a date range EDD format, the date and time for the upper end of the range.
+     */
+    datetime_max?: string;
+    /**
+     * Explains the reason for a change to the latest_estimated_delivery. This string will only have a value if:1. The source for the latest EDD is AfterShip EDD. 2. The reason for the change is known.For a comprehensive list of reasons, please refer to this document.
+     */
+    revise_reason?: string;
 }
+

@@ -4,12 +4,13 @@
  */
 
 export interface OrderProcessingTimeEstimatedPickupEstimatedDeliveryDateRequest {
-  /**
-   * Processing time of an order, from being placed to being picked up. Only support day as value now.AfterShip will set day as the default value.
-   */
-  unit?: string;
-  /**
-   * Processing time of an order, from being placed to being picked up.AfterShip will set 0 as the default value.
-   */
-  value?: number;
+    /**
+     * Processing time of an order, from being placed to being picked up. Only support day as value now.AfterShip will set day as the default value.
+     */
+    unit?: string;
+    /**
+     * Processing time of an order, from being placed to being picked up.AfterShip will set 0 as the default value.
+     */
+    value?: number;
 }
+

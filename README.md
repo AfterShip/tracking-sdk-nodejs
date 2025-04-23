@@ -22,9 +22,11 @@ If you need support using AfterShip products, please contact support@aftership.c
   - [Endpoints](#endpoints)
     - [/trackings](#trackings)
     - [/couriers](#couriers)
+    - [/courier-connections](#courier-connections)
     - [/estimated-delivery-date](#estimated-delivery-date)
   - [Help](#help)
   - [License](#license)
+
 
 ## Before you begin
 
@@ -38,19 +40,20 @@ Before you begin to integrate:
 
 Each SDK version is designed to work with a specific API version. Please refer to the table below to identify the supported API versions for each SDK version, ensuring you select the appropriate SDK version for the API version you intend to use.
 
-| SDK Version | Supported API Version | Branch                                                        |
-| ----------- | --------------------- | ------------------------------------------------------------- |
-| 12.x.x      | 2025-01               | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2025-01 |
-| 11.x.x      | 2024-10               | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2024-10 |
-| 10.x.x      | 2024-07               | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2024-07 |
-| 9.x.x       | 2024-04               | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2024-04 |
-| 8.x.x       | 2023-10               | https://github.com/AfterShip/aftership-sdk-nodejs             |
-| <=7.x.x     | Legacy API            | https://github.com/AfterShip/aftership-sdk-nodejs             |
+| SDK Version | Supported API Version | Branch |
+| --- | --- | --- |
+| 13.x.x | 2025-04 | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2025-04 |
+| 12.x.x | 2025-01 | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2025-01 |
+| 11.x.x | 2024-10 | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2024-10 |
+| 10.x.x | 2024-07 | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2024-07 |
+| 9.x.x | 2024-04 | https://github.com/AfterShip/tracking-sdk-nodejs/tree/2024-04 |
+| 8.x.x | 2023-10 | https://github.com/AfterShip/aftership-sdk-nodejs |
+| <=7.x.x | Legacy API | https://github.com/AfterShip/aftership-sdk-nodejs |
+
 
 ## Quick Start
 
 ### Installation
-
 ```bash
 npm install --save @aftership/tracking-sdk
 ```
@@ -61,7 +64,7 @@ Create AfterShip instance with options
 
 | Name       | Type   | Required | Description                                                                                                                       |
 | ---------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| api_key    | string | ✔       | Your AfterShip API key                                                                                                            |
+| api_key    | string | ✔        | Your AfterShip API key                                                                                                            |
 | auth_type  | enum   |          | Default value: `AuthType.API_KEY` <br > AES authentication: `AuthType.AES` <br > RSA authentication: `AuthType.RSA`               |
 | api_secret | string |          | Required if the authentication type is `AuthType.AES` or `AuthType.RSA`                                                           |
 | domain     | string |          | AfterShip API domain. Default value: https://api.aftership.com                                                                    |
@@ -74,42 +77,43 @@ Create AfterShip instance with options
 
 ```javascript
 // Step 1: Require the AfterShip client
-import { AfterShip } from "@aftership/tracking-sdk";
+import {AfterShip} from '@aftership/tracking-sdk';
 // or
 // const {AfterShip} = require('@aftership/tracking-sdk');
 
+
 // Step 2: Initialize the client object
-const aftership = new AfterShip({ api_key: "YOUR_API_KEY" });
+const aftership = new AfterShip({api_key: 'YOUR_API_KEY'});
 
 // Step 3: Create the request object
 const createTrackingRequestBody = {
-  tracking_number: "<tracking_number>",
-  slug: "<slug>",
+    tracking_number: '<tracking_number>',
+    slug: '<slug>'
 };
 
 // Step 4: Make the request
-aftership.tracking
-  .createTracking(createTrackingRequestBody)
-  .then((tracking) => console.log(tracking))
-  .catch((error) => console.log(error));
+aftership.tracking.createTracking(createTrackingRequestBody)
+    .then(tracking => console.log(tracking))
+    .catch(error => console.log(error));
 ```
 
 ## Rate Limiter
 
-See the [Rate Limit](https://www.aftership.com/docs/tracking/2024-10/quickstart/rate-limit) to understand the AfterShip rate limit policy.
+See the [Rate Limit](https://www.aftership.com/docs/tracking/2025-04/quickstart/rate-limit) to understand the AfterShip rate limit policy.
 
 ## Error Handling
 
 The SDK will return an error object when there is any error during the request, with the following specification:
 
-| Name             | Type   | Description                    |
-| ---------------- | ------ | ------------------------------ |
-| message          | string | Detail message of the error    |
-| code             | enum   | Error code enum for API Error. |
-| meta_code        | number | API response meta code.        |
-| status_code      | number | HTTP status code.              |
-| response_body    | string | API response body.             |
+| Name            | Type   | Description                    |
+| --------------- | ------ | ------------------------------ |
+| message         | string | Detail message of the error    |
+| code            | enum   | Error code enum for API Error. |
+| meta_code       | number | API response meta code.        |
+| status_code     | number | HTTP status code.              |
+| response_body   | string | API response body.             |
 | response_headers | object | API response header.           |
+
 
 ### Error List
 
@@ -144,8 +148,9 @@ The AfterShip instance has the following properties which are exactly the same a
 
 - courier - Get a list of our supported couriers.
 - tracking - Create trackings, update trackings, and get tracking results.
+- courier-connection - Create courier connections, update courier connections, and get courier connections results.
 - estimated-delivery-date - Get estimated delivery date for your order.
-
+  
 ### /trackings
 
 **POST** /trackings
@@ -164,92 +169,128 @@ const payload = {
 };
 
 aftership.tracking
-  .createTracking(payload)
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
+    .createTracking(payload)
+    .then((result) => console.log(result))
+    .catch((e) => console.log(e));
 ```
 
 **DELETE** /trackings/:id
 
 ```javascript
 aftership.tracking
-  .deleteTrackingById("<tracking_id>")
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
+    .deleteTrackingById('<tracking_id>')
+    .then((result) => console.log(result))
+    .catch((e) => console.log(e));
 ```
 
 **GET** /trackings
 
 ```javascript
 aftership.tracking
-  .getTrackings({ limit: 10, fields: "slug,tracking_number" })
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
+    .getTrackings({ limit: 10, fields: 'slug,tracking_number' })
+    .then((result) => console.log(result))
+    .catch((e) => console.log(e));
 ```
 
 **GET** /trackings/:id
 
 ```javascript
 aftership.tracking
-  .getTrackingById("<tracking_id>")
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
+    .getTrackingById('<tracking_id>')
+    .then((result) => console.log(result))
+    .catch((e) => console.log(e));
 ```
 
 **PUT** /trackings/:id
 
 ```javascript
 aftership.tracking
-  .updateTrackingById("<tracking_id>", { title: "New Title123" })
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
+    .updateTrackingById('<tracking_id>',{title: 'New Title123'})
+    .then((result) => console.log(result))
+    .catch((e) => console.log(e));
 ```
 
 **POST** /trackings/:id/retrack
 
 ```javascript
 aftership.tracking
-  .retrackTrackingById("<tracking_id>")
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
+    .retrackTrackingById('<tracking_id>')
+    .then((result) => console.log(result))
+    .catch((e) => console.log(e));
 ```
 
 **POST** /trackings/:id/mark-as-completed
 
 ```javascript
 aftership.tracking
-  .markTrackingCompletedById("<tracking_id>", { reason: "DELIVERED" })
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
+    .markTrackingCompletedById('<tracking_id>', { reason: 'DELIVERED' })
+    .then((result) => console.log(result))
+    .catch((e) => console.log(e));
 ```
 
 ### /couriers
-
 **GET** /couriers
 
 ```javascript
 aftership.courier
-  .getUserCouriers()
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
-
-**GET** /couriers/all
-
-```javascript
-aftership.courier
-  .getAllCouriers()
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
+    .GetCouriers()
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
 ```
 
 **POST** /couriers/detect
 
 ```js
 aftership.courier
-  .detectCourier({ tracking_number: "<tracking_number>" })
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
+    .detectCourier({ tracking_number: '<tracking_number>' })
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
+
+### /courier-connections
+**GET** /courier-connections
+
+```javascript
+aftership.courier
+    .getCourierConnections()
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
+
+**POST** /courier-connections
+
+```js
+aftership.courier
+    .postCourierConnections({courier_slug: "dhl-api", credentials: {"api_key": "<api_key>"}})
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
+
+**GET** /courier-connections/:id
+
+```js
+aftership.courier
+    .getCourierConnectionsById("<courier_connection_id>")
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
+
+**PATCH** /courier-connections/:id
+
+```js
+aftership.courier
+    .putCourierConnectionsById("<courier_connection_id>", {credentials: {"api_key": "<api_key>"}})
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
+
+**DELETE** /courier-connections/:id
+
+```js
+aftership.courier
+    .deleteCourierConnectionsById("<courier_connection_id>")
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
 ```
 
 ### /estimated-delivery-date
@@ -258,19 +299,32 @@ aftership.courier
 
 ```javascript
 const payload = {
-  estimated_delivery_dates: [
-    {
-      slug: "<slug>",
-      origin_address: { country: "<country>" },
-      destination_address: { country: "<country>" },
-    },
-  ],
+    estimated_delivery_dates: [{
+        slug: '<slug>',
+        origin_address: { country: '<country>' },
+        destination_address: { country: '<country>' },
+    }]
 };
 aftership.estimatedDeliveryDate
-  .predictBatch(payload)
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
+    .predictBatch(payload)
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
 ```
+
+**POST** /estimated-delivery-date/predict
+
+```javascript
+const payload = {
+    slug: '<slug>',
+    origin_address: { country: '<country>' },
+    destination_address: { country: '<country>' },
+};
+aftership.estimatedDeliveryDate
+    .predict(payload)
+    .then(result => console.log(result))
+    .catch(e => console.log(e));
+```
+
 
 ## Help
 
@@ -280,7 +334,6 @@ If you get stuck, we're here to help:
 - Contact AfterShip official support via support@aftership.com
 
 ## License
-
 Copyright (c) 2025 AfterShip
 
 Licensed under the MIT license.
