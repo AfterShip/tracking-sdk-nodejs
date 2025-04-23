@@ -12,5 +12,4 @@ export enum AdditionalFields {
     "origin_country_region" = "origin_country_region",
     "destination_country_region" = "destination_country_region",
     "tracking_ship_date" = "tracking_ship_date",
-    "customers[x].phone_number" = "customers[x].phone_number",
 }
