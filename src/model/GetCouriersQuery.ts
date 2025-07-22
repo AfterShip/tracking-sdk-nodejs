@@ -3,7 +3,6 @@
  * Do not edit the class manually.
  */
 export interface GetCouriersQuery {
-    active?: boolean;
-    slug?: string;
+  active?: boolean;
+  slug?: string;
 }
-

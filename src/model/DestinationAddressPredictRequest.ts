@@ -4,25 +4,24 @@
  */
 
 export interface DestinationAddressPredictRequest {
-    /**
-     * The country/region of the destination location where the package will be delivered. Use 3 letters of ISO 3166-1 country code.
-     */
-    country_region: string;
-    /**
-     * State, province, or the equivalent location of the destination address where the package will be delivered.Either `destination_address.state` or `destination_address.postal_code` is required.
-     */
-    state?: string;
-    /**
-     * City of the destination address where the package will be delivered.
-     */
-    city?: string;
-    /**
-     * Postal code of the destination address.Either `destination_address.state` or `destination_address.postal_code` is required.
-     */
-    postal_code?: string;
-    /**
-     * Raw location of the destination address. A raw address will help AI to identify the accurate location of the destination address.
-     */
-    raw_location?: string;
+  /**
+   * The country/region of the destination location where the package will be delivered. Use 3 letters of ISO 3166-1 country code.
+   */
+  country_region: string;
+  /**
+   * State, province, or the equivalent location of the destination address where the package will be delivered.Either `destination_address.state` or `destination_address.postal_code` is required.
+   */
+  state?: string | null;
+  /**
+   * City of the destination address where the package will be delivered.
+   */
+  city?: string | null;
+  /**
+   * Postal code of the destination address.Either `destination_address.state` or `destination_address.postal_code` is required.
+   */
+  postal_code?: string | null;
+  /**
+   * Raw location of the destination address. A raw address will help AI to identify the accurate location of the destination address.
+   */
+  raw_location?: string | null;
 }
-

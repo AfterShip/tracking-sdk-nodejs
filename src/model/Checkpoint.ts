@@ -7,73 +7,72 @@ import { Tag } from "./Tag";
 import { EventsCheckpoint } from "./EventsCheckpoint";
 
 export interface Checkpoint {
-    /**
-     * The date and time of the checkpoint event was added to AfterShip. It uses the format `YYYY-MM-DDTHH:mm:ssZ` for the timezone GMT +0.
-     */
-    created_at?: string;
-    /**
-     * The unique code of courier for this checkpoint. Get courier slug 
-     */
-    slug?: string;
-    /**
-     * The date and time of the checkpoint event, provided by the carrier. It uses the timezone of the checkpoint. The format may differ depending on how the carrier provides it:- YYYY-MM-DDTHH:mm:ss- YYYY-MM-DDTHH:mm:ssZ
-     */
-    checkpoint_time?: string;
-    /**
-     * Location info provided by carrier
-     */
-    location?: string;
-    /**
-     * City info provided by carrier
-     */
-    city?: string;
-    /**
-     * State info provided by carrier
-     */
-    state?: string;
-    /**
-     * Postal code info provided by carrier
-     */
-    zip?: string;
-    /**
-     * The latitude and longitude coordinates indicate the precise location of the shipments that are currently in transit.
-     */
-    coordinate?: CoordinateCheckpoint;
-    /**
-     * Country/Region ISO Alpha-3 (three letters) of the checkpoint
-     */
-    country_region?: string;
-    /**
-     * Country/Region name of the checkpoint, may also contain other location info.
-     */
-    country_region_name?: string;
-    /**
-     * Checkpoint message
-     */
-    message?: string;
-    /**
-     * Current status of tracking. (
-     */
-    tag?: Tag;
-    /**
-     * Current subtag of checkpoint. (
-     */
-    subtag?: string;
-    /**
-     * Normalized checkpoint message. (
-     */
-    subtag_message?: string;
-    /**
-     * Checkpoint raw status provided by courier
-     */
-    raw_tag?: string;
-    /**
-     * The array provides details about specific event(s) that occurred  to a shipment, such as &#34;returned_to_sender&#34;. You can find the full list of events and reasons &lt;/span&gt;- The events&#39; value for the same checkpoint message is subject to change as we consistently strive to enhance the performance of this feature.
-     */
-    events?: EventsCheckpoint[];
-    /**
-     * The source of the checkpoint, which can either be from the carrier or when the user marks the tracking as completed.
-     */
-    source?: string;
+  /**
+   * The date and time of the checkpoint event was added to AfterShip. It uses the format `YYYY-MM-DDTHH:mm:ssZ` for the timezone GMT +0.
+   */
+  created_at?: string;
+  /**
+   * The unique code of courier for this checkpoint. Get courier slug
+   */
+  slug?: string;
+  /**
+   * The date and time of the checkpoint event, provided by the carrier. It uses the timezone of the checkpoint. The format may differ depending on how the carrier provides it:- YYYY-MM-DDTHH:mm:ss- YYYY-MM-DDTHH:mm:ssZ
+   */
+  checkpoint_time?: string;
+  /**
+   * Location info provided by carrier
+   */
+  location?: string | null;
+  /**
+   * City info provided by carrier
+   */
+  city?: string | null;
+  /**
+   * State info provided by carrier
+   */
+  state?: string | null;
+  /**
+   * Postal code info provided by carrier
+   */
+  zip?: string | null;
+  /**
+   * The latitude and longitude coordinates indicate the precise location of the shipments that are currently in transit.
+   */
+  coordinate?: CoordinateCheckpoint;
+  /**
+   * Country/Region ISO Alpha-3 (three letters) of the checkpoint
+   */
+  country_region?: string | null;
+  /**
+   * Country/Region name of the checkpoint, may also contain other location info.
+   */
+  country_region_name?: string | null;
+  /**
+   * Checkpoint message
+   */
+  message?: string;
+  /**
+   * Current status of tracking. (
+   */
+  tag?: Tag;
+  /**
+   * Current subtag of checkpoint. (
+   */
+  subtag?: string;
+  /**
+   * Normalized checkpoint message. (
+   */
+  subtag_message?: string;
+  /**
+   * Checkpoint raw status provided by courier
+   */
+  raw_tag?: string | null;
+  /**
+   * The array provides details about specific event(s) that occurred  to a shipment, such as &#34;returned_to_sender&#34;. You can find the full list of events and reasons &lt;/span&gt;- The events&#39; value for the same checkpoint message is subject to change as we consistently strive to enhance the performance of this feature.
+   */
+  events?: EventsCheckpoint[];
+  /**
+   * The source of the checkpoint, which can either be from the carrier or when the user marks the tracking as completed.
+   */
+  source?: string;
 }
-

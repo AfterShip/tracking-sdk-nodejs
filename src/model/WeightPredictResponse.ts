@@ -4,13 +4,12 @@
  */
 
 export interface WeightPredictResponse {
-    /**
-     * The weight unit of the package. 
-     */
-    unit: string;
-    /**
-     * The weight of the shipment.
-     */
-    value: number;
+  /**
+   * The weight unit of the package.
+   */
+  unit: string;
+  /**
+   * The weight of the shipment.
+   */
+  value: number;
 }
-

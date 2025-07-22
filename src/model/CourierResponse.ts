@@ -6,13 +6,12 @@ import { Meta } from "./Meta";
 import { DataCourierResponse } from "./DataCourierResponse";
 
 export interface CourierResponse {
-    /**
-     * Meta data
-     */
-    meta: Meta;
-    /**
-     * 
-     */
-    data: DataCourierResponse;
+  /**
+   * Meta data
+   */
+  meta: Meta;
+  /**
+   *
+   */
+  data: DataCourierResponse;
 }
-

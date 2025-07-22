@@ -6,13 +6,12 @@ import { Meta } from "./Meta";
 import { DataTrackingResponseForGetTrackings } from "./DataTrackingResponseForGetTrackings";
 
 export interface TrackingResponseForGetTrackings {
-    /**
-     * Meta data
-     */
-    meta: Meta;
-    /**
-     * 
-     */
-    data?: DataTrackingResponseForGetTrackings;
+  /**
+   * Meta data
+   */
+  meta: Meta;
+  /**
+   *
+   */
+  data?: DataTrackingResponseForGetTrackings;
 }
-

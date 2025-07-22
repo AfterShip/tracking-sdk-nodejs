@@ -4,9 +4,8 @@
  */
 
 export interface ReasonEventsCheckpoint {
-    /**
-     * The code of the reason. 
-     */
-    code?: string;
+  /**
+   * The code of the reason.
+   */
+  code?: string;
 }
-

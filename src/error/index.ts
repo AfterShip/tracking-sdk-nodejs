@@ -5,22 +5,29 @@
 import { AfterShipErrorCodes } from "./code";
 
 export class AftershipError extends Error {
-    public readonly meta_code: number | null;
-    public readonly message: string;
-    public readonly code: AfterShipErrorCodes | null;
-    public readonly status_code: string | null;
-    public readonly response_body: any | null;
-    public readonly response_headers: any | null;
+  public readonly meta_code: number | null;
+  public readonly message: string;
+  public readonly code: AfterShipErrorCodes | null;
+  public readonly status_code: string | null;
+  public readonly response_body: any | null;
+  public readonly response_headers: any | null;
 
-    constructor(message: string, code: AfterShipErrorCodes, meta_code?: number, status_code?: string, response_body?: any, response_headers?: any) {
-        super(message);
-        this.message = message;
-        this.code = code;
-        this.meta_code = meta_code || null;
-        this.status_code = status_code || null;
-        this.response_body = response_body || null;
-        this.response_headers = response_headers || null;
-    }
+  constructor(
+    message: string,
+    code: AfterShipErrorCodes,
+    meta_code?: number,
+    status_code?: string,
+    response_body?: any,
+    response_headers?: any,
+  ) {
+    super(message);
+    this.message = message;
+    this.code = code;
+    this.meta_code = meta_code || null;
+    this.status_code = status_code || null;
+    this.response_body = response_body || null;
+    this.response_headers = response_headers || null;
+  }
 }
 
 export * from "./code";

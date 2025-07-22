@@ -4,17 +4,16 @@
  */
 
 export interface PaginationDataTrackingResponseForGetTrackings {
-    /**
-     * The total number of trackings.
-     */
-    total?: number;
-    /**
-     * A string representing the cursor value for the next page of results.
-     */
-    next_cursor?: string;
-    /**
-     * To indicate if next page is available.
-     */
-    has_next_page?: boolean;
+  /**
+   * The total number of trackings.
+   */
+  total?: number;
+  /**
+   * A string representing the cursor value for the next page of results.
+   */
+  next_cursor?: string;
+  /**
+   * To indicate if next page is available.
+   */
+  has_next_page?: boolean;
 }
-
