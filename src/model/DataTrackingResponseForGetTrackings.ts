@@ -6,13 +6,12 @@ import { PaginationDataTrackingResponseForGetTrackings } from "./PaginationDataT
 import { Tracking } from "./Tracking";
 
 export interface DataTrackingResponseForGetTrackings {
-    /**
-     * The Pagination holds the information for the pagination when the response contains multiple objects.
-     */
-    pagination?: PaginationDataTrackingResponseForGetTrackings;
-    /**
-     * Array of 
-     */
-    trackings?: Tracking[];
+  /**
+   * The Pagination holds the information for the pagination when the response contains multiple objects.
+   */
+  pagination?: PaginationDataTrackingResponseForGetTrackings;
+  /**
+   * Array of
+   */
+  trackings?: Tracking[];
 }
-

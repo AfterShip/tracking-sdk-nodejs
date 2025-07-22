@@ -6,13 +6,12 @@ import { Meta } from "./Meta";
 import { Tracking } from "./Tracking";
 
 export interface TrackingResponse {
-    /**
-     * Meta data
-     */
-    meta: Meta;
-    /**
-     * Object describes the tracking information.&lt;div style=&#34;display:none; height: 0&#34;&gt;&lt;/div&gt;
-     */
-    data: Tracking;
+  /**
+   * Meta data
+   */
+  meta: Meta;
+  /**
+   * Object describes the tracking information.&lt;div style=&#34;display:none; height: 0&#34;&gt;&lt;/div&gt;
+   */
+  data: Tracking;
 }
-

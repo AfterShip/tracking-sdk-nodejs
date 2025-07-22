@@ -4,13 +4,12 @@
  */
 
 export interface CarbonEmissionsCreateTrackingResponse {
-    /**
-     * The unit in which the value field is expressed. Allowed values: kg
-     */
-    unit?: string;
-    /**
-     * The total amount of carbon emissions
-     */
-    value?: number;
+  /**
+   * The unit in which the value field is expressed. Allowed values: kg
+   */
+  unit?: string;
+  /**
+   * The total amount of carbon emissions
+   */
+  value?: number;
 }
-

@@ -4,13 +4,12 @@
  */
 
 export interface CoordinateCheckpoint {
-    /**
-     * Represents the latitude.
-     */
-    latitude?: number;
-    /**
-     * Represents the longitude.
-     */
-    longitude?: number;
+  /**
+   * Represents the latitude.
+   */
+  latitude?: number;
+  /**
+   * Represents the longitude.
+   */
+  longitude?: number;
 }
-

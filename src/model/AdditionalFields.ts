@@ -3,13 +3,12 @@
  * Do not edit the class manually.
  */
 
-
 export enum AdditionalFields {
-    "tracking_account_number" = "tracking_account_number",
-    "destination_postal_code" = "destination_postal_code",
-    "destination_state" = "destination_state",
-    "tracking_key" = "tracking_key",
-    "origin_country_region" = "origin_country_region",
-    "destination_country_region" = "destination_country_region",
-    "tracking_ship_date" = "tracking_ship_date",
+  "tracking_account_number" = "tracking_account_number",
+  "destination_postal_code" = "destination_postal_code",
+  "destination_state" = "destination_state",
+  "tracking_key" = "tracking_key",
+  "origin_country_region" = "origin_country_region",
+  "destination_country_region" = "destination_country_region",
+  "tracking_ship_date" = "tracking_ship_date",
 }

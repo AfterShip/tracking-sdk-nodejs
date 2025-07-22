@@ -3,18 +3,17 @@
  * Do not edit the class manually.
  */
 
-
 export enum SlugGroup {
-    "amazon-group" = "amazon-group",
-    "fedex-group" = "fedex-group",
-    "toll-group" = "toll-group",
-    "taqbin-group" = "taqbin-group",
-    "tnt-group" = "tnt-group",
-    "cj-group" = "cj-group",
-    "hermes-group" = "hermes-group",
-    "dpd-group" = "dpd-group",
-    "gls-group" = "gls-group",
-    "dhl-group" = "dhl-group",
-    "fastway-group" = "fastway-group",
-    "asendia-group" = "asendia-group",
+  "amazon-group" = "amazon-group",
+  "fedex-group" = "fedex-group",
+  "toll-group" = "toll-group",
+  "taqbin-group" = "taqbin-group",
+  "tnt-group" = "tnt-group",
+  "cj-group" = "cj-group",
+  "hermes-group" = "hermes-group",
+  "dpd-group" = "dpd-group",
+  "gls-group" = "gls-group",
+  "dhl-group" = "dhl-group",
+  "fastway-group" = "fastway-group",
+  "asendia-group" = "asendia-group",
 }

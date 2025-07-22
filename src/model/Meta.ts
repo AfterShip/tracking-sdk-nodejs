@@ -4,17 +4,16 @@
  */
 
 export interface Meta {
-    /**
-     * meta code
-     */
-    code: number;
-    /**
-     * error message, only exist if the response status is not 2xx
-     */
-    message?: string;
-    /**
-     * error type, only exist if the response status is not 2xx
-     */
-    type?: string;
+  /**
+   * meta code
+   */
+  code: number;
+  /**
+   * error message, only exist if the response status is not 2xx
+   */
+  message?: string;
+  /**
+   * error type, only exist if the response status is not 2xx
+   */
+  type?: string;
 }
-

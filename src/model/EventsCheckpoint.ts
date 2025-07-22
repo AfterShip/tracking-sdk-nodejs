@@ -5,13 +5,12 @@
 import { ReasonEventsCheckpoint } from "./ReasonEventsCheckpoint";
 
 export interface EventsCheckpoint {
-    /**
-     * Represents the event code.
-     */
-    code?: string;
-    /**
-     * Describes the specific reason that led to the event.
-     */
-    reason?: ReasonEventsCheckpoint;
+  /**
+   * Represents the event code.
+   */
+  code?: string;
+  /**
+   * Describes the specific reason that led to the event.
+   */
+  reason?: ReasonEventsCheckpoint;
 }
-

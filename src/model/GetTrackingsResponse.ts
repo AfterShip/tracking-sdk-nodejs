@@ -6,13 +6,12 @@ import { Tracking } from "./Tracking";
 import { Pagination } from "./Pagination";
 
 export interface GetTrackingsResponse {
-    /**
-     * 
-     */
-    pagination: Pagination;
-    /**
-     * Array of 
-     */
-    trackings?: Tracking[];
+  /**
+   *
+   */
+  pagination: Pagination;
+  /**
+   * Array of
+   */
+  trackings?: Tracking[];
 }
-

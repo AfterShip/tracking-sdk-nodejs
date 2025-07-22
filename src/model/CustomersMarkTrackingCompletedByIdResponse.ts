@@ -4,25 +4,24 @@
  */
 
 export interface CustomersMarkTrackingCompletedByIdResponse {
-    /**
-     * The  role of the customer, indicating whether the customer is  an individual or a company.
-     */
-    role?: string;
-    /**
-     * Customer name associated with the tracking.
-     */
-    name?: string;
-    /**
-     * The phone number(s) to receive SMS notifications. Phone numbers should begin with a `+` sign and include the area code.
-     */
-    phone_number?: string;
-    /**
-     * Email address(es) to receive email notifications.
-     */
-    email?: string;
-    /**
-     * The preferred language of the customer. If you have set up AfterShip notifications in different languages, we use this to send the tracking updates to the customer in their preferred language.
-     */
-    language?: string;
+  /**
+   * The  role of the customer, indicating whether the customer is  an individual or a company.
+   */
+  role?: string | null;
+  /**
+   * Customer name associated with the tracking.
+   */
+  name?: string | null;
+  /**
+   * The phone number(s) to receive SMS notifications. Phone numbers should begin with a `+` sign and include the area code.
+   */
+  phone_number?: string | null;
+  /**
+   * Email address(es) to receive email notifications.
+   */
+  email?: string | null;
+  /**
+   * The preferred language of the customer. If you have set up AfterShip notifications in different languages, we use this to send the tracking updates to the customer in their preferred language.
+   */
+  language?: string | null;
 }
-

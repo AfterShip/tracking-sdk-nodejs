@@ -5,9 +5,8 @@
 import { CredentialField } from "./CredentialField";
 
 export interface CredentialsCourier {
-    /**
-     * Through this field, users can get the specific authentication information needed when creating a courier connection to one specific carrier, such as API keys, usernames, and passwords. Each field includes properties like name, data type, and whether it&#39;s required.
-     */
-    fields?: CredentialField[];
+  /**
+   * Through this field, users can get the specific authentication information needed when creating a courier connection to one specific carrier, such as API keys, usernames, and passwords. Each field includes properties like name, data type, and whether it&#39;s required.
+   */
+  fields?: CredentialField[];
 }
-

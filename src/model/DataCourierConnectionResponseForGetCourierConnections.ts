@@ -6,13 +6,12 @@ import { PaginationDataCourierConnectionResponseForGetCourierConnections } from 
 import { CourierConnection } from "./CourierConnection";
 
 export interface DataCourierConnectionResponseForGetCourierConnections {
-    /**
-     * 
-     */
-    pagination?: PaginationDataCourierConnectionResponseForGetCourierConnections;
-    /**
-     * 
-     */
-    courier_connections?: CourierConnection[];
+  /**
+   *
+   */
+  pagination?: PaginationDataCourierConnectionResponseForGetCourierConnections;
+  /**
+   *
+   */
+  courier_connections?: CourierConnection[];
 }
-

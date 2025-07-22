@@ -4,13 +4,12 @@
  */
 
 export interface ShipmentWeightRetrackTrackingByIdResponse {
-    /**
-     * The unit in which the value field is expressed.
-     */
-    unit?: string;
-    /**
-     * The total amount of shipment weight.
-     */
-    value?: number;
+  /**
+   * The unit in which the value field is expressed.
+   */
+  unit?: string;
+  /**
+   * The total amount of shipment weight.
+   */
+  value?: number;
 }
-

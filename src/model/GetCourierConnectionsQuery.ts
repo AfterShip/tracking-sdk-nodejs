@@ -3,8 +3,7 @@
  * Do not edit the class manually.
  */
 export interface GetCourierConnectionsQuery {
-    courier_slug?: string;
-    cursor?: string;
-    limit?: string;
+  courier_slug?: string;
+  cursor?: string;
+  limit?: string;
 }
-
