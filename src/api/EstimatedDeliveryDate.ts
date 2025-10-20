@@ -4,10 +4,10 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
-import { PredictRequest } from "../model/PredictRequest";
-import { PredictResponse } from "../model/PredictResponse";
 import { PredictBatchRequest } from "../model/PredictBatchRequest";
 import { PredictBatchResponse } from "../model/PredictBatchResponse";
+import { EstimatedDeliveryDateRequest } from "../model/EstimatedDeliveryDateRequest";
+import { PredictResponse } from "../model/PredictResponse";
 
 export class EstimatedDeliveryDateApi {
   private readonly request: Request;
@@ -20,17 +20,15 @@ export class EstimatedDeliveryDateApi {
    * &gt; The estimated delivery date is provided by AfterShip, based on its AI-predictive model. You can display the EDD on the product page, cart, and order checkout page. It indicates when a customer will receive the order.You can use  to activate this feature.
    */
   public async predict(
-    body: PredictRequest,
+    body: EstimatedDeliveryDateRequest,
     headers?: { [key: string]: any },
   ): Promise<PredictResponse> {
+    const url = `/tracking/2025-07/estimated-delivery-date/predict`;
     return this.request.makeRequest<PredictResponse>({
-      url: `/tracking/2025-07/estimated-delivery-date/predict`,
+      url: url,
       method: "POST",
       body,
       headers,
-      request_legacy_tag: "",
-      response_legacy_tag: "",
-      is_paging: false,
     });
   }
   /**
@@ -40,14 +38,12 @@ export class EstimatedDeliveryDateApi {
     body: PredictBatchRequest,
     headers?: { [key: string]: any },
   ): Promise<PredictBatchResponse> {
+    const url = `/tracking/2025-07/estimated-delivery-date/predict-batch`;
     return this.request.makeRequest<PredictBatchResponse>({
-      url: `/tracking/2025-07/estimated-delivery-date/predict-batch`,
+      url: url,
       method: "POST",
       body,
       headers,
-      request_legacy_tag: "",
-      response_legacy_tag: "",
-      is_paging: false,
     });
   }
 }

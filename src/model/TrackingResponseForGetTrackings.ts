@@ -3,8 +3,11 @@
  * Do not edit the class manually.
  */
 import { Meta } from "./Meta";
-import { DataTrackingResponseForGetTrackings } from "./DataTrackingResponseForGetTrackings";
+import { TrackingResponseForGetTrackingsData } from "./TrackingResponseForGetTrackingsData";
 
+/**
+ * Tracking response for getting tracking
+ */
 export interface TrackingResponseForGetTrackings {
   /**
    * Meta data
@@ -13,5 +16,5 @@ export interface TrackingResponseForGetTrackings {
   /**
    *
    */
-  data?: DataTrackingResponseForGetTrackings;
+  data?: TrackingResponseForGetTrackingsData;
 }

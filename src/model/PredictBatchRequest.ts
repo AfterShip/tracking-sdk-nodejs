@@ -4,6 +4,9 @@
  */
 import { EstimatedDeliveryDateRequest } from "./EstimatedDeliveryDateRequest";
 
+/**
+ *
+ */
 export interface PredictBatchRequest {
   /**
    *

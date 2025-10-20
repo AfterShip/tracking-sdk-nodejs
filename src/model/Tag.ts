@@ -3,6 +3,9 @@
  * Do not edit the class manually.
  */
 
+/**
+ * Current status of tracking. (
+ */
 export enum Tag {
   "Pending" = "Pending",
   "InfoReceived" = "InfoReceived",

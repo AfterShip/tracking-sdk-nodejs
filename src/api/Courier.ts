@@ -5,9 +5,9 @@
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
 import { GetCouriersQuery } from "../model/GetCouriersQuery";
-import { GetCouriersResponse } from "../model/GetCouriersResponse";
 import { DetectCourierRequest } from "../model/DetectCourierRequest";
 import { DetectCourierResponse } from "../model/DetectCourierResponse";
+import { GetCouriersResponse } from "../model/GetCouriersResponse";
 
 export class CourierApi {
   private readonly request: Request;
@@ -23,14 +23,12 @@ export class CourierApi {
     query?: GetCouriersQuery,
     headers?: { [key: string]: any },
   ): Promise<GetCouriersResponse> {
+    const url = `/tracking/2025-07/couriers`;
     return this.request.makeRequest<GetCouriersResponse>({
-      url: `/tracking/2025-07/couriers`,
+      url: url,
       method: "GET",
       query,
       headers,
-      request_legacy_tag: "",
-      response_legacy_tag: "",
-      is_paging: false,
     });
   }
   /**
@@ -40,14 +38,12 @@ export class CourierApi {
     body: DetectCourierRequest,
     headers?: { [key: string]: any },
   ): Promise<DetectCourierResponse> {
+    const url = `/tracking/2025-07/couriers/detect`;
     return this.request.makeRequest<DetectCourierResponse>({
-      url: `/tracking/2025-07/couriers/detect`,
+      url: url,
       method: "POST",
       body,
       headers,
-      request_legacy_tag: "",
-      response_legacy_tag: "",
-      is_paging: false,
     });
   }
 }

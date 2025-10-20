@@ -4,6 +4,9 @@
  */
 import { SlugGroup } from "./SlugGroup";
 
+/**
+ *
+ */
 export interface DetectCourierRequest {
   /**
    * Tracking number of a shipment.

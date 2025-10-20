@@ -3,9 +3,9 @@
  * Do not edit the class manually.
  */
 import { CourierConnectionApi } from "./api/CourierConnection";
-import { CourierApi } from "./api/Courier";
-import { TrackingApi } from "./api/Tracking";
 import { EstimatedDeliveryDateApi } from "./api/EstimatedDeliveryDate";
+import { TrackingApi } from "./api/Tracking";
+import { CourierApi } from "./api/Courier";
 import { AftershipError, AfterShipErrorCodes } from "./error";
 import { AuthType } from "./lib/authentication";
 import {
@@ -30,13 +30,13 @@ export interface Options {
   proxy?: string;
 }
 
-const SDK_ENV_PREFIX = "AFTERSHIP_TRACKING_SDK";
+const SDK_ENV_PREFIX = "AFTERSHIP_TRACKING_SDK_";
 
 export class AfterShip {
   public readonly courierConnection: CourierConnectionApi;
-  public readonly courier: CourierApi;
-  public readonly tracking: TrackingApi;
   public readonly estimatedDeliveryDate: EstimatedDeliveryDateApi;
+  public readonly tracking: TrackingApi;
+  public readonly courier: CourierApi;
   private readonly options: Options;
 
   constructor(options?: Options) {
@@ -101,9 +101,9 @@ export class AfterShip {
       proxy: parseProxy(this.options.proxy),
     });
     this.courierConnection = new CourierConnectionApi(request);
-    this.courier = new CourierApi(request);
-    this.tracking = new TrackingApi(request);
     this.estimatedDeliveryDate = new EstimatedDeliveryDateApi(request);
+    this.tracking = new TrackingApi(request);
+    this.courier = new CourierApi(request);
   }
 
   private validateOptions() {
