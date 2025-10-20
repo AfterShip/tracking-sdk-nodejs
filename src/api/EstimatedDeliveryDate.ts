@@ -4,10 +4,10 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
-import { PredictBatchRequest } from "../model/PredictBatchRequest";
-import { PredictBatchResponse } from "../model/PredictBatchResponse";
 import { EstimatedDeliveryDateRequest } from "../model/EstimatedDeliveryDateRequest";
 import { PredictResponse } from "../model/PredictResponse";
+import { PredictBatchRequest } from "../model/PredictBatchRequest";
+import { PredictBatchResponse } from "../model/PredictBatchResponse";
 
 export class EstimatedDeliveryDateApi {
   private readonly request: Request;

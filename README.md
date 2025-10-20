@@ -20,10 +20,10 @@ If you need support using AfterShip products, please contact support@aftership.c
   - [Error Handling](#error-handling)
     - [Error List](#error-list)
   - [Endpoints](#endpoints)
-    - [/courier-connections](#courier-connections)
-    - [/estimated-delivery-date](#estimated-delivery-date)
     - [/trackings](#trackings)
     - [/couriers](#couriers)
+    - [/courier-connections](#courier-connections)
+    - [/estimated-delivery-date](#estimated-delivery-date)
   - [Help](#help)
   - [License](#license)
 
@@ -140,15 +140,6 @@ The SDK will return an error object when there is any error during the request, 
 
 The AfterShip instance has the following properties which are exactly the same as the API endpoints:
 
-- courierConnection
-  - Get courier connections
-  - Create courier connections
-  - Get courier connection by id
-  - Update courier connection by id
-  - Delete courier connection by id
-- estimatedDeliveryDate
-  - Prediction for the Estimated Delivery Date
-  - Batch prediction for the Estimated Delivery Date
 - tracking
   - Get trackings
   - Create a tracking
@@ -160,95 +151,15 @@ The AfterShip instance has the following properties which are exactly the same a
 - courier
   - Get couriers
   - Detect courier
-
-### /courier-connections
-
-**GET** /courier-connections
-
-```javascript
-const query = {};
-
-aftership.courierConnection
-  .getCourierConnections(query)
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
-
-**POST** /courier-connections
-
-```javascript
-const postCourierConnectionsRequestBody = {
-  courier_slug: "valid_value",
-  credentials: {},
-};
-
-aftership.courierConnection
-  .postCourierConnections(postCourierConnectionsRequestBody)
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
-
-**GET** /courier-connections/{id}
-
-```javascript
-aftership.courierConnection
-  .getCourierConnectionsById("valid_value")
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
-
-**PATCH** /courier-connections/{id}
-
-```javascript
-const putCourierConnectionsByIdRequestBody = {
-  credentials: {},
-};
-
-aftership.courierConnection
-  .putCourierConnectionsById(
-    "valid_value",
-    putCourierConnectionsByIdRequestBody,
-  )
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
-
-**DELETE** /courier-connections/{id}
-
-```javascript
-aftership.courierConnection
-  .deleteCourierConnectionsById("valid_value")
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
-
-### /estimated-delivery-date
-
-**POST** /estimated-delivery-date/predict
-
-```javascript
-const predictRequestBody = {
-  slug: "valid_value",
-  origin_address: {}, // EstimatedDeliveryDateRequestOriginAddress
-  destination_address: {}, // EstimatedDeliveryDateRequestDestinationAddress
-};
-
-aftership.estimatedDeliveryDate
-  .predict(predictRequestBody)
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
-
-**POST** /estimated-delivery-date/predict-batch
-
-```javascript
-const predictBatchRequestBody = {};
-
-aftership.estimatedDeliveryDate
-  .predictBatch(predictBatchRequestBody)
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
+- courierConnection
+  - Get courier connections
+  - Create courier connections
+  - Get courier connection by id
+  - Update courier connection by id
+  - Delete courier connection by id
+- estimatedDeliveryDate
+  - Prediction for the Estimated Delivery Date
+  - Batch prediction for the Estimated Delivery Date
 
 ### /trackings
 
@@ -356,6 +267,95 @@ const detectCourierRequestBody = {
 
 aftership.courier
   .detectCourier(detectCourierRequestBody)
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+```
+
+### /courier-connections
+
+**GET** /courier-connections
+
+```javascript
+const query = {};
+
+aftership.courierConnection
+  .getCourierConnections(query)
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+```
+
+**POST** /courier-connections
+
+```javascript
+const postCourierConnectionsRequestBody = {
+  courier_slug: "valid_value",
+  credentials: {},
+};
+
+aftership.courierConnection
+  .postCourierConnections(postCourierConnectionsRequestBody)
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+```
+
+**GET** /courier-connections/{id}
+
+```javascript
+aftership.courierConnection
+  .getCourierConnectionsById("valid_value")
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+```
+
+**PATCH** /courier-connections/{id}
+
+```javascript
+const putCourierConnectionsByIdRequestBody = {
+  credentials: {},
+};
+
+aftership.courierConnection
+  .putCourierConnectionsById(
+    "valid_value",
+    putCourierConnectionsByIdRequestBody,
+  )
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+```
+
+**DELETE** /courier-connections/{id}
+
+```javascript
+aftership.courierConnection
+  .deleteCourierConnectionsById("valid_value")
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+```
+
+### /estimated-delivery-date
+
+**POST** /estimated-delivery-date/predict
+
+```javascript
+const predictRequestBody = {
+  slug: "valid_value",
+  origin_address: {}, // EstimatedDeliveryDateRequestOriginAddress
+  destination_address: {}, // EstimatedDeliveryDateRequestDestinationAddress
+};
+
+aftership.estimatedDeliveryDate
+  .predict(predictRequestBody)
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+```
+
+**POST** /estimated-delivery-date/predict-batch
+
+```javascript
+const predictBatchRequestBody = {};
+
+aftership.estimatedDeliveryDate
+  .predictBatch(predictBatchRequestBody)
   .then((result) => console.log(result))
   .catch((e) => console.log(e));
 ```

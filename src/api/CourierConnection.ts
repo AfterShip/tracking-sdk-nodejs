@@ -4,6 +4,7 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
+import { PutCourierConnectionsByIdResponse } from "../model/PutCourierConnectionsByIdResponse";
 import { DeleteCourierConnectionsByIdResponse } from "../model/DeleteCourierConnectionsByIdResponse";
 import { GetCourierConnectionsResponse } from "../model/GetCourierConnectionsResponse";
 import { GetCourierConnectionsQuery } from "../model/GetCourierConnectionsQuery";
@@ -11,7 +12,6 @@ import { PostCourierConnectionsRequest } from "../model/PostCourierConnectionsRe
 import { PostCourierConnectionsResponse } from "../model/PostCourierConnectionsResponse";
 import { GetCourierConnectionsByIdResponse } from "../model/GetCourierConnectionsByIdResponse";
 import { PutCourierConnectionsByIdRequest } from "../model/PutCourierConnectionsByIdRequest";
-import { PutCourierConnectionsByIdResponse } from "../model/PutCourierConnectionsByIdResponse";
 
 export class CourierConnectionApi {
   private readonly request: Request;

@@ -4,18 +4,18 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
+import { MarkTrackingCompletedByIdResponse } from "../model/MarkTrackingCompletedByIdResponse";
+import { GetTrackingByIdQuery } from "../model/GetTrackingByIdQuery";
+import { UpdateTrackingByIdRequest } from "../model/UpdateTrackingByIdRequest";
+import { UpdateTrackingByIdResponse } from "../model/UpdateTrackingByIdResponse";
+import { DeleteTrackingByIdResponse } from "../model/DeleteTrackingByIdResponse";
+import { GetTrackingsResponse } from "../model/GetTrackingsResponse";
 import { GetTrackingsQuery } from "../model/GetTrackingsQuery";
 import { CreateTrackingRequest } from "../model/CreateTrackingRequest";
 import { CreateTrackingResponse } from "../model/CreateTrackingResponse";
 import { GetTrackingByIdResponse } from "../model/GetTrackingByIdResponse";
-import { UpdateTrackingByIdRequest } from "../model/UpdateTrackingByIdRequest";
-import { GetTrackingsResponse } from "../model/GetTrackingsResponse";
-import { GetTrackingByIdQuery } from "../model/GetTrackingByIdQuery";
-import { UpdateTrackingByIdResponse } from "../model/UpdateTrackingByIdResponse";
-import { DeleteTrackingByIdResponse } from "../model/DeleteTrackingByIdResponse";
 import { RetrackTrackingByIdResponse } from "../model/RetrackTrackingByIdResponse";
 import { MarkTrackingCompletedByIdRequest } from "../model/MarkTrackingCompletedByIdRequest";
-import { MarkTrackingCompletedByIdResponse } from "../model/MarkTrackingCompletedByIdResponse";
 
 export class TrackingApi {
   private readonly request: Request;

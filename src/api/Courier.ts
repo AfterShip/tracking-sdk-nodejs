@@ -4,10 +4,10 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
+import { GetCouriersResponse } from "../model/GetCouriersResponse";
 import { GetCouriersQuery } from "../model/GetCouriersQuery";
 import { DetectCourierRequest } from "../model/DetectCourierRequest";
 import { DetectCourierResponse } from "../model/DetectCourierResponse";
-import { GetCouriersResponse } from "../model/GetCouriersResponse";
 
 export class CourierApi {
   private readonly request: Request;
