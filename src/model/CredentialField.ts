@@ -3,6 +3,9 @@
  * Do not edit the class manually.
  */
 
+/**
+ *
+ */
 export interface CredentialField {
   /**
    * The display name of the credential field that users must provide when creating a carrier connection.

@@ -3,6 +3,9 @@
  * Do not edit the class manually.
  */
 
+/**
+ * All available additional fields
+ */
 export enum AdditionalFields {
   "tracking_account_number" = "tracking_account_number",
   "destination_postal_code" = "destination_postal_code",

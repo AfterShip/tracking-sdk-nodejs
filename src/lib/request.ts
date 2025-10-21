@@ -15,7 +15,7 @@ export const DEFAULT_MAX_RETRY = 3;
 export const MAX_MAX_RETRY = 10;
 export const MIN_MAX_RETRY = 0;
 export const DEFAULT_USER_AGENT =
-  "tracking-sdk-nodejs/14.0.0 (https://www.aftership.com) axios/1.7.2";
+  "tracking-sdk-nodejs/15.0.0 (https://www.aftership.com) axios/1.7.2";
 
 type ResponseData = {
   meta: {
@@ -32,9 +32,6 @@ export interface RequestConfig {
   body?: any;
   query?: any;
   headers?: { [key: string]: any };
-  request_legacy_tag: string;
-  response_legacy_tag: string;
-  is_paging: boolean;
 }
 
 export interface RequestOptions {
@@ -119,10 +116,10 @@ export class Request {
   private async withRetry<T>(
     requestConfig: AxiosRequestConfig,
     retry: number = 0,
-  ): Promise<T> {
+  ): Promise<any> {
     try {
       const response = await axios<T>(requestConfig);
-      return response.data;
+      return response;
     } catch (error: any) {
       if (this.shouldRetry(error) && retry < this.options.max_retry) {
         await this.delayWithJitter(retry);
@@ -134,10 +131,6 @@ export class Request {
   }
 
   public async makeRequest<T>(config: RequestConfig): Promise<T> {
-    config.body = this.handleRequestData(
-      config.request_legacy_tag,
-      config.body,
-    );
     const headers = this.getHeaders(config);
     try {
       const response = await this.withRetry<ResponseData>({
@@ -145,13 +138,31 @@ export class Request {
         method: config.method,
         headers,
         params: config.query,
-        validateStatus: (status) => status >= 200 && status < 400,
+        validateStatus: (status) => status >= 200 && status < 300,
         baseURL: this.options.domain,
         data: config.body,
         timeout: this.options.timeout,
         proxy: this.options.proxy,
       });
-      return response.data;
+
+      const plainHeaders: Record<string, string> = {};
+      if (response.headers) {
+        for (const key in response.headers) {
+          if (Object.prototype.hasOwnProperty.call(response.headers, key)) {
+            const value = response.headers[key];
+            if (Array.isArray(value)) {
+              plainHeaders[key] = value.join(", ");
+            } else if (value !== null && value !== undefined) {
+              plainHeaders[key] = String(value);
+            }
+          }
+        }
+      }
+
+      return {
+        response_headers: plainHeaders,
+        data: response.data.data,
+      } as T;
     } catch (error) {
       throw this.handleError(error);
     }
@@ -163,35 +174,37 @@ export class Request {
         "Request timed out.",
         AfterShipErrorCodes.TIMED_OUT,
       );
-    } else if (e instanceof AftershipError) {
-      return e;
-    } else if (e.response && e.response.status >= 500) {
-      return new AftershipError(
-        e.response?.data?.meta?.message || e.message,
-        AfterShipErrorCodes.INTERNAL_ERROR,
-        e.response.status,
-        e.response.status,
-        JSON.stringify(e.response?.data),
-        e.response.headers,
-      );
-    } else {
-      return new AftershipError(
-        e.response?.data?.meta?.message,
-        AfterShipMetaCodeMap[e.response?.data?.meta?.code?.toString()],
-        e.response?.data?.meta?.code,
-        e.response?.status,
-        JSON.stringify(e.response?.data),
-        e.response.headers,
-      );
     }
-  }
 
-  private handleRequestData(request_legacy_tag: string, data: any): any {
-    if (!request_legacy_tag) {
-      return data;
+    if (e instanceof AftershipError) {
+      return e;
     }
-    return {
-      [request_legacy_tag]: data,
-    };
+
+    const response = e.response;
+    const response_data_str = JSON.stringify(response?.data);
+    if (response) {
+      const meta = response.data?.meta;
+      const message = meta?.message || e.message;
+      let code = AfterShipMetaCodeMap[meta?.code?.toString()];
+
+      if (!code) {
+        if (response.status >= 500) {
+          code = AfterShipErrorCodes.UNKNOWN_ERROR;
+        } else if (response.status >= 400) {
+          code = AfterShipErrorCodes.BAD_REQUEST;
+        }
+      }
+
+      return new AftershipError(
+        message,
+        code,
+        meta?.code,
+        response.status,
+        response_data_str,
+        response.headers,
+      );
+    }
+
+    return new AftershipError(e.message, AfterShipErrorCodes.UNKNOWN_ERROR);
   }
 }

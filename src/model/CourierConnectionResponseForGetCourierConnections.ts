@@ -3,8 +3,11 @@
  * Do not edit the class manually.
  */
 import { Meta } from "./Meta";
-import { DataCourierConnectionResponseForGetCourierConnections } from "./DataCourierConnectionResponseForGetCourierConnections";
+import { CourierConnectionResponseForGetCourierConnectionsData } from "./CourierConnectionResponseForGetCourierConnectionsData";
 
+/**
+ * Courier connection response for getting courier connections
+ */
 export interface CourierConnectionResponseForGetCourierConnections {
   /**
    * Meta data
@@ -13,5 +16,5 @@ export interface CourierConnectionResponseForGetCourierConnections {
   /**
    *
    */
-  data?: DataCourierConnectionResponseForGetCourierConnections;
+  data?: CourierConnectionResponseForGetCourierConnectionsData;
 }

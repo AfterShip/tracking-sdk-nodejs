@@ -3,8 +3,11 @@
  * Do not edit the class manually.
  */
 import { Meta } from "./Meta";
-import { DataCourierResponse } from "./DataCourierResponse";
+import { CourierResponseData } from "./CourierResponseData";
 
+/**
+ * Model of all couriers endpoint response
+ */
 export interface CourierResponse {
   /**
    * Meta data
@@ -13,5 +16,5 @@ export interface CourierResponse {
   /**
    *
    */
-  data: DataCourierResponse;
+  data: CourierResponseData;
 }

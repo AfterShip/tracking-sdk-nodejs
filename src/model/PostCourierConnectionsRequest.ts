@@ -3,6 +3,9 @@
  * Do not edit the class manually.
  */
 
+/**
+ *
+ */
 export interface PostCourierConnectionsRequest {
   /**
    * Unique code of courier. Get the slugs from .

@@ -18,7 +18,7 @@ export const AfterShipMetaCodeMap: { [key: string]: AfterShipErrorCodes } = {
   "4011": AfterShipErrorCodes.MISSING_OR_INVALID_REQUIRED_FIELD,
   "4012": AfterShipErrorCodes.BAD_COURIER,
   "4013": AfterShipErrorCodes.INACTIVE_RETRACK_NOT_ALLOWED,
-  "4014": AfterShipErrorCodes.NOTIFICATION_REUQIRED,
+  "4014": AfterShipErrorCodes.NOTIFICATION_REQUIRED,
   "4015": AfterShipErrorCodes.ID_INVALID,
   "4016": AfterShipErrorCodes.RETRACK_ONCE_ALLOWED,
   "4017": AfterShipErrorCodes.TRACKING_NUMBER_FORMAT_INVALID,

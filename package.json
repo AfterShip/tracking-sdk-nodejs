@@ -1,6 +1,6 @@
 {
   "name": "@aftership/tracking-sdk",
-  "version": "14.0.0",
+  "version": "15.0.0",
   "description": "Tracking NodeJS SDK",
   "main": "dist/aftership.js",
   "types": "dist/aftership.d.ts",
@@ -27,7 +27,8 @@
   },
   "keywords": [
     "aftership",
-    "tracking"
+    "tracking",
+    "dhl"
   ],
   "devDependencies": {
     "@types/node": "^20.11.25",

@@ -5,6 +5,9 @@
 import { Meta } from "./Meta";
 import { Tracking } from "./Tracking";
 
+/**
+ * Tracking response for returning single tracking
+ */
 export interface TrackingResponse {
   /**
    * Meta data

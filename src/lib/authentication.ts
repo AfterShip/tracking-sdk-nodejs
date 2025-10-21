@@ -119,8 +119,8 @@ export class Authentication {
           qeury_value = querystring.escape(qeury_value);
           concatenate_querys.push(`${k.trim()}=${qeury_value}`);
         }
+        return `${url}?${concatenate_querys.join("&")}`;
       }
-      return `${url}?${concatenate_querys.join("&")}`;
     }
     return url;
   }
