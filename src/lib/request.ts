@@ -8,6 +8,7 @@ import { AftershipError } from "../error";
 import { AfterShipErrorCodes } from "../error/code";
 import { AfterShipMetaCodeMap } from "../error/meta_code";
 import { Proxy } from "../utils/parse_proxy";
+import querystring from "querystring";
 
 export const DEFAULT_DOMAIN = "https://api.aftership.com";
 export const DEFAULT_TIMEOUT = 10000;
@@ -15,7 +16,7 @@ export const DEFAULT_MAX_RETRY = 3;
 export const MAX_MAX_RETRY = 10;
 export const MIN_MAX_RETRY = 0;
 export const DEFAULT_USER_AGENT =
-  "tracking-sdk-nodejs/15.0.0 (https://www.aftership.com) axios/1.7.2";
+  "tracking-sdk-nodejs/15.0.1 (https://www.aftership.com) axios/1.7.2";
 
 type ResponseData = {
   meta: {
@@ -133,7 +134,7 @@ export class Request {
   public async makeRequest<T>(config: RequestConfig): Promise<T> {
     const headers = this.getHeaders(config);
     try {
-      const response = await this.withRetry<ResponseData>({
+      const axiosConfig: AxiosRequestConfig = {
         url: config.url,
         method: config.method,
         headers,
@@ -143,7 +144,28 @@ export class Request {
         data: config.body,
         timeout: this.options.timeout,
         proxy: this.options.proxy,
-      });
+      };
+
+      // Use custom paramsSerializer to match signature calculation encoding (RFC 3986)
+      // Signature calculation uses querystring.escape(), so we need to use the same encoding
+      if (config.query) {
+        axiosConfig.paramsSerializer = (params: any) => {
+          const query_keys = Object.keys(params).sort();
+          const parts: string[] = [];
+          for (const k of query_keys) {
+            const value = params[k];
+            if (value !== null && value !== undefined) {
+              const key = k.trim();
+              const val = value.toString().trim();
+              // Use querystring.escape (RFC 3986) to match signature calculation
+              parts.push(`${key}=${querystring.escape(val)}`);
+            }
+          }
+          return parts.join("&");
+        };
+      }
+
+      const response = await this.withRetry<ResponseData>(axiosConfig);
 
       const plainHeaders: Record<string, string> = {};
       if (response.headers) {
