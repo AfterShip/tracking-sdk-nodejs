@@ -14,5 +14,5 @@ export interface CreateTrackingRequestLastMile {
   /**
    * The unique code of the carrier responsible for the last-mile of the shipment.  Find all the courier slugs .
    */
-  slug?: string;
+  slug: string;
 }

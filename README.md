@@ -20,10 +20,10 @@ If you need support using AfterShip products, please contact support@aftership.c
   - [Error Handling](#error-handling)
     - [Error List](#error-list)
   - [Endpoints](#endpoints)
+    - [/estimated-delivery-date](#estimated-delivery-date)
     - [/trackings](#trackings)
     - [/couriers](#couriers)
     - [/courier-connections](#courier-connections)
-    - [/estimated-delivery-date](#estimated-delivery-date)
   - [Help](#help)
   - [License](#license)
 
@@ -38,7 +38,7 @@ Before you begin to integrate:
 ### API and SDK Version
 
 - SDK Version:
-- API Version: 2025-07
+- API Version: 2026-01
 
 ## Quick Start
 
@@ -54,7 +54,7 @@ Create AfterShip instance with options
 
 | Name       | Type   | Required | Description                                                                                                                       |
 | ---------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| api_key    | string | ✔       | Your AfterShip API key                                                                                                            |
+| api_key    | string | ✔        | Your AfterShip API key                                                                                                            |
 | auth_type  | enum   |          | Default value: `AuthType.API_KEY` <br > AES authentication: `AuthType.AES` <br > RSA authentication: `AuthType.RSA`               |
 | api_secret | string |          | Required if the authentication type is `AuthType.AES` or `AuthType.RSA`                                                           |
 | domain     | string |          | AfterShip API domain. Default value: https://api.aftership.com                                                                    |
@@ -140,6 +140,9 @@ The SDK will return an error object when there is any error during the request, 
 
 The AfterShip instance has the following properties which are exactly the same as the API endpoints:
 
+- estimatedDeliveryDate
+  - Prediction for the Estimated Delivery Date
+  - Batch prediction for the Estimated Delivery Date
 - tracking
   - Get trackings
   - Create a tracking
@@ -157,9 +160,34 @@ The AfterShip instance has the following properties which are exactly the same a
   - Get courier connection by id
   - Update courier connection by id
   - Delete courier connection by id
-- estimatedDeliveryDate
-  - Prediction for the Estimated Delivery Date
-  - Batch prediction for the Estimated Delivery Date
+
+### /estimated-delivery-date
+
+**POST** /estimated-delivery-date/predict
+
+```javascript
+const predictRequestBody = {
+  slug: "valid_value",
+  origin_address: {}, // EstimatedDeliveryDateRequestOriginAddress
+  destination_address: {}, // EstimatedDeliveryDateRequestDestinationAddress
+};
+
+aftership.estimatedDeliveryDate
+  .predict(predictRequestBody)
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+```
+
+**POST** /estimated-delivery-date/predict-batch
+
+```javascript
+const predictBatchRequestBody = {};
+
+aftership.estimatedDeliveryDate
+  .predictBatch(predictBatchRequestBody)
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+```
 
 ### /trackings
 
@@ -328,34 +356,6 @@ aftership.courierConnection
 ```javascript
 aftership.courierConnection
   .deleteCourierConnectionsById("valid_value")
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
-
-### /estimated-delivery-date
-
-**POST** /estimated-delivery-date/predict
-
-```javascript
-const predictRequestBody = {
-  slug: "valid_value",
-  origin_address: {}, // EstimatedDeliveryDateRequestOriginAddress
-  destination_address: {}, // EstimatedDeliveryDateRequestDestinationAddress
-};
-
-aftership.estimatedDeliveryDate
-  .predict(predictRequestBody)
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
-
-**POST** /estimated-delivery-date/predict-batch
-
-```javascript
-const predictBatchRequestBody = {};
-
-aftership.estimatedDeliveryDate
-  .predictBatch(predictBatchRequestBody)
   .then((result) => console.log(result))
   .catch((e) => console.log(e));
 ```

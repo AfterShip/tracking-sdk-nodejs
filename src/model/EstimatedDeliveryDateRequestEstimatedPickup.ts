@@ -5,7 +5,7 @@
 import { EstimatedDeliveryDateRequestEstimatedPickupOrderProcessingTime } from "./EstimatedDeliveryDateRequestEstimatedPickupOrderProcessingTime";
 
 /**
- * The local pickup time of the package.Either `pickup_time` or `estimated_pickup` is required.
+ * The local pickup time of the package.&lt;/br&gt;&lt;span style=color:#ff6b2b;padding:2px&gt;**Either `pickup_time` or `estimated_pickup` is required.**&lt;/span&gt;
  */
 export interface EstimatedDeliveryDateRequestEstimatedPickup {
   /**
