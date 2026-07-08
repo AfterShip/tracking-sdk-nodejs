@@ -17,6 +17,8 @@ If you need support using AfterShip products, please contact support@aftership.c
   - [Constructor](#constructor)
     - [Example](#example)
   - [Rate Limiter](#rate-limiter)
+    - [On successful requests](#on-successful-requests)
+    - [On rate-limited requests](#on-rate-limited-requests)
   - [Error Handling](#error-handling)
     - [Error List](#error-list)
   - [Endpoints](#endpoints)
@@ -91,6 +93,54 @@ aftership.tracking
 ## Rate Limiter
 
 See the [Rate Limit](https://www.aftership.com/docs/tracking/quickstart/rate-limit) to understand the AfterShip rate limit policy.
+
+The API returns the current rate limit status in the headers of **every** response, and the SDK exposes them on both successful and failed requests, so you can monitor your consumption proactively instead of waiting for `429` errors.
+
+| Header                  | Description                                          |
+| ----------------------- | ---------------------------------------------------- |
+| `x-ratelimit-limit`     | The rate limit ceiling for the current endpoint per second |
+| `x-ratelimit-remaining` | The number of requests left for the 1-second window  |
+| `x-ratelimit-reset`     | The Unix timestamp when the rate limit will be reset |
+
+> Note: header names in `response_headers` are lower-cased.
+
+### On successful requests
+
+Every successful response contains a `response_headers` object alongside `data` (available since v15.0.0):
+
+```typescript
+import { AfterShip } from "@aftership/tracking-sdk";
+
+const aftership = new AfterShip({ api_key: "<your_api_key>" });
+
+const result = await aftership.tracking.getTrackings();
+
+console.log(result.data.trackings);
+
+// Rate limit status for this endpoint
+const limit = Number(result.response_headers["x-ratelimit-limit"]);
+const remaining = Number(result.response_headers["x-ratelimit-remaining"]);
+const resetAt = Number(result.response_headers["x-ratelimit-reset"]);
+
+if (remaining <= 1) {
+  // Throttle or defer lower-priority workflows before hitting the limit
+}
+```
+
+### On rate-limited requests
+
+When the limit is exceeded, the SDK throws an `AftershipError` with `code = TOO_MANY_REQUEST`. The same headers are available on the error:
+
+```typescript
+try {
+  await aftership.tracking.getTrackings();
+} catch (e) {
+  if (e.code === "TOO_MANY_REQUEST") {
+    const resetAt = Number(e.response_headers["x-ratelimit-reset"]);
+    // Wait until resetAt before retrying
+  }
+}
+```
 
 ## Error Handling
 
