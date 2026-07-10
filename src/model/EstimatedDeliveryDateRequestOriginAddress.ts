@@ -12,7 +12,7 @@ export interface EstimatedDeliveryDateRequestOriginAddress {
    */
   country_region: string;
   /**
-   * State, province, or the equivalent location of the origin address. Use 3 letters of ISO 3166-1 country/region code for countries/regions without state. Either `origin_address.state` or `origin_address.postal_code` is required.
+   * State, province, or the equivalent location of the origin address. Use 3 letters of ISO 3166-1 country/region code for countries/regions without state. &lt;/br&gt;&lt;span style=color:#ff6b2b;padding:2px&gt;**Either `origin_address.state` or `origin_address.postal_code` is required.**&lt;/span&gt;
    */
   state?: string | null;
   /**
@@ -20,7 +20,7 @@ export interface EstimatedDeliveryDateRequestOriginAddress {
    */
   city?: string | null;
   /**
-   * Postal code of the origin address. Use 3 letters of ISO 3166-1 country/region code for countries/regions without postal code. Either `origin_address.state` or `origin_address.postal_code` is required.
+   * Postal code of the origin address. Use 3 letters of ISO 3166-1 country/region code for countries/regions without postal code. &lt;/br&gt;&lt;span style=color:#ff6b2b;padding:2px&gt;**Either `origin_address.state` or `origin_address.postal_code` is required.**&lt;/span&gt;
    */
   postal_code?: string | null;
   /**

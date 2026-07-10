@@ -7,6 +7,6 @@
  * The source of the checkpoint, which can either be from the carrier or when the user marks the tracking as completed.
  */
 export enum CheckpointSource {
-  "carrier" = "carrier",
-  "user" = "user",
+  carrier = "carrier",
+  user = "user",
 }

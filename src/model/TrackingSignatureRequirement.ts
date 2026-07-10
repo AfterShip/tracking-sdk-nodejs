@@ -7,9 +7,9 @@
  * The signature_requirement field serves the purpose of validating the service option type, specifically proof of delivery. By collecting the recipient&#39;s signature upon delivery, it ensures the package reaches the intended recipient and prevents disputes related to non-delivery or lost packages.&lt;/br&gt;
  */
 export enum TrackingSignatureRequirement {
-  "signature_required" = "signature_required",
-  "adult_signature_required" = "adult_signature_required",
-  "indirect_signature_required" = "indirect_signature_required",
-  "no_signature_required" = "no_signature_required",
-  "null" = "null",
+  signature_required = "signature_required",
+  adult_signature_required = "adult_signature_required",
+  indirect_signature_required = "indirect_signature_required",
+  no_signature_required = "no_signature_required",
+  null = "null",
 }

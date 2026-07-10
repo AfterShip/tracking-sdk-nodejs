@@ -27,4 +27,8 @@ export interface UpdateTrackingByIdRequestCustomers {
    * The preferred language of the customer. If you have set up AfterShip notifications in different languages, we use this to send the tracking updates to the customer in their preferred language.
    */
   language?: string;
+  /**
+   * The customer&#39;s identifier on the merchant or platform (for example, Shopify) side.
+   */
+  id?: string;
 }

@@ -79,4 +79,8 @@ export interface Checkpoint {
    * The source of the checkpoint, which can either be from the carrier or when the user marks the tracking as completed.
    */
   source?: CheckpointSource;
+  /**
+   * Unique hash identifier for each checkpoint event, could be used for deduplication.
+   */
+  hash?: string;
 }
