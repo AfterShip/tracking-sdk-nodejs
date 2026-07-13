@@ -4,10 +4,10 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
-import { EstimatedDeliveryDateRequest } from "../model/EstimatedDeliveryDateRequest";
-import { PredictResponse } from "../model/PredictResponse";
 import { PredictBatchRequest } from "../model/PredictBatchRequest";
 import { PredictBatchResponse } from "../model/PredictBatchResponse";
+import { EstimatedDeliveryDateRequest } from "../model/EstimatedDeliveryDateRequest";
+import { PredictResponse } from "../model/PredictResponse";
 
 export class EstimatedDeliveryDateApi {
   private readonly request: Request;
@@ -23,7 +23,7 @@ export class EstimatedDeliveryDateApi {
     body: EstimatedDeliveryDateRequest,
     headers?: { [key: string]: any },
   ): Promise<PredictResponse> {
-    const url = `/tracking/2026-01/estimated-delivery-date/predict`;
+    const url = `/tracking/2026-07/estimated-delivery-date/predict`;
     return this.request.makeRequest<PredictResponse>({
       url: url,
       method: "POST",
@@ -38,7 +38,7 @@ export class EstimatedDeliveryDateApi {
     body: PredictBatchRequest,
     headers?: { [key: string]: any },
   ): Promise<PredictBatchResponse> {
-    const url = `/tracking/2026-01/estimated-delivery-date/predict-batch`;
+    const url = `/tracking/2026-07/estimated-delivery-date/predict-batch`;
     return this.request.makeRequest<PredictBatchResponse>({
       url: url,
       method: "POST",

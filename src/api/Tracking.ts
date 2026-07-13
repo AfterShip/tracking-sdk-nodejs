@@ -4,18 +4,18 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
-import { GetTrackingByIdQuery } from "../model/GetTrackingByIdQuery";
-import { UpdateTrackingByIdRequest } from "../model/UpdateTrackingByIdRequest";
-import { MarkTrackingCompletedByIdResponse } from "../model/MarkTrackingCompletedByIdResponse";
 import { GetTrackingsResponse } from "../model/GetTrackingsResponse";
 import { GetTrackingsQuery } from "../model/GetTrackingsQuery";
+import { CreateTrackingRequest } from "../model/CreateTrackingRequest";
 import { GetTrackingByIdResponse } from "../model/GetTrackingByIdResponse";
-import { UpdateTrackingByIdResponse } from "../model/UpdateTrackingByIdResponse";
 import { DeleteTrackingByIdResponse } from "../model/DeleteTrackingByIdResponse";
+import { MarkTrackingCompletedByIdResponse } from "../model/MarkTrackingCompletedByIdResponse";
+import { CreateTrackingResponse } from "../model/CreateTrackingResponse";
+import { GetTrackingByIdQuery } from "../model/GetTrackingByIdQuery";
+import { UpdateTrackingByIdRequest } from "../model/UpdateTrackingByIdRequest";
+import { UpdateTrackingByIdResponse } from "../model/UpdateTrackingByIdResponse";
 import { RetrackTrackingByIdResponse } from "../model/RetrackTrackingByIdResponse";
 import { MarkTrackingCompletedByIdRequest } from "../model/MarkTrackingCompletedByIdRequest";
-import { CreateTrackingRequest } from "../model/CreateTrackingRequest";
-import { CreateTrackingResponse } from "../model/CreateTrackingResponse";
 
 export class TrackingApi {
   private readonly request: Request;
@@ -31,7 +31,7 @@ export class TrackingApi {
     query?: GetTrackingsQuery,
     headers?: { [key: string]: any },
   ): Promise<GetTrackingsResponse> {
-    const url = `/tracking/2026-01/trackings`;
+    const url = `/tracking/2026-07/trackings`;
     return this.request.makeRequest<GetTrackingsResponse>({
       url: url,
       method: "GET",
@@ -46,7 +46,7 @@ export class TrackingApi {
     body: CreateTrackingRequest,
     headers?: { [key: string]: any },
   ): Promise<CreateTrackingResponse> {
-    const url = `/tracking/2026-01/trackings`;
+    const url = `/tracking/2026-07/trackings`;
     return this.request.makeRequest<CreateTrackingResponse>({
       url: url,
       method: "POST",
@@ -68,7 +68,7 @@ export class TrackingApi {
         AfterShipErrorCodes.BAD_REQUEST,
       );
     }
-    const url = `/tracking/2026-01/trackings/${id}`;
+    const url = `/tracking/2026-07/trackings/${id}`;
     return this.request.makeRequest<GetTrackingByIdResponse>({
       url: url,
       method: "GET",
@@ -90,7 +90,7 @@ export class TrackingApi {
         AfterShipErrorCodes.BAD_REQUEST,
       );
     }
-    const url = `/tracking/2026-01/trackings/${id}`;
+    const url = `/tracking/2026-07/trackings/${id}`;
     return this.request.makeRequest<UpdateTrackingByIdResponse>({
       url: url,
       method: "PUT",
@@ -111,7 +111,7 @@ export class TrackingApi {
         AfterShipErrorCodes.BAD_REQUEST,
       );
     }
-    const url = `/tracking/2026-01/trackings/${id}`;
+    const url = `/tracking/2026-07/trackings/${id}`;
     return this.request.makeRequest<DeleteTrackingByIdResponse>({
       url: url,
       method: "DELETE",
@@ -131,7 +131,7 @@ export class TrackingApi {
         AfterShipErrorCodes.BAD_REQUEST,
       );
     }
-    const url = `/tracking/2026-01/trackings/${id}/retrack`;
+    const url = `/tracking/2026-07/trackings/${id}/retrack`;
     return this.request.makeRequest<RetrackTrackingByIdResponse>({
       url: url,
       method: "POST",
@@ -152,7 +152,7 @@ export class TrackingApi {
         AfterShipErrorCodes.BAD_REQUEST,
       );
     }
-    const url = `/tracking/2026-01/trackings/${id}/mark-as-completed`;
+    const url = `/tracking/2026-07/trackings/${id}/mark-as-completed`;
     return this.request.makeRequest<MarkTrackingCompletedByIdResponse>({
       url: url,
       method: "POST",

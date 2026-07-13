@@ -17,15 +17,13 @@ If you need support using AfterShip products, please contact support@aftership.c
   - [Constructor](#constructor)
     - [Example](#example)
   - [Rate Limiter](#rate-limiter)
-    - [On successful requests](#on-successful-requests)
-    - [On rate-limited requests](#on-rate-limited-requests)
   - [Error Handling](#error-handling)
     - [Error List](#error-list)
   - [Endpoints](#endpoints)
-    - [/estimated-delivery-date](#estimated-delivery-date)
     - [/trackings](#trackings)
     - [/couriers](#couriers)
     - [/courier-connections](#courier-connections)
+    - [/estimated-delivery-date](#estimated-delivery-date)
   - [Help](#help)
   - [License](#license)
 
@@ -39,8 +37,8 @@ Before you begin to integrate:
 
 ### API and SDK Version
 
-- SDK Version: 16.0.0
-- API Version: 2026-01
+- SDK Version: 17.0.0
+- API Version: 2026-07
 
 ## Quick Start
 
@@ -94,53 +92,26 @@ aftership.tracking
 
 See the [Rate Limit](https://www.aftership.com/docs/tracking/quickstart/rate-limit) to understand the AfterShip rate limit policy.
 
-The API returns the current rate limit status in the headers of **every** response, and the SDK exposes them on both successful and failed requests, so you can monitor your consumption proactively instead of waiting for `429` errors.
+The API returns its current rate limit status in the headers of every response, and the SDK exposes these headers on both successful responses and rate-limited errors, so you can monitor your consumption proactively instead of waiting for `429` errors.
 
-| Header                  | Description                                          |
-| ----------------------- | ---------------------------------------------------- |
-| `x-ratelimit-limit`     | The rate limit ceiling for the current endpoint per second |
-| `x-ratelimit-remaining` | The number of requests left for the 1-second window  |
-| `x-ratelimit-reset`     | The Unix timestamp when the rate limit will be reset |
+| Header                  | Description                                                |
+| ----------------------- | ---------------------------------------------------------- |
+| `X-RateLimit-Limit`     | The rate limit ceiling for the current endpoint per second |
+| `X-RateLimit-Remaining` | The number of requests left for the 1-second window        |
+| `X-RateLimit-Reset`     | The Unix timestamp when the rate limit will be reset       |
 
-> Note: header names in `response_headers` are lower-cased.
+Every successful response exposes a `response_headers` object alongside `data` (header names are lower-cased). Taking the Quick Start example above:
 
-### On successful requests
-
-Every successful response contains a `response_headers` object alongside `data` (available since v15.0.0):
-
-```typescript
-import { AfterShip } from "@aftership/tracking-sdk";
-
-const aftership = new AfterShip({ api_key: "<your_api_key>" });
-
-const result = await aftership.tracking.getTrackings();
-
-console.log(result.data.trackings);
-
-// Rate limit status for this endpoint
-const limit = Number(result.response_headers["x-ratelimit-limit"]);
+```javascript
 const remaining = Number(result.response_headers["x-ratelimit-remaining"]);
 const resetAt = Number(result.response_headers["x-ratelimit-reset"]);
 
 if (remaining <= 1) {
-  // Throttle or defer lower-priority workflows before hitting the limit
+  // Throttle or defer lower-priority requests until `resetAt`
 }
 ```
 
-### On rate-limited requests
-
-When the limit is exceeded, the SDK throws an `AftershipError` with `code = TOO_MANY_REQUEST`. The same headers are available on the error:
-
-```typescript
-try {
-  await aftership.tracking.getTrackings();
-} catch (e) {
-  if (e.code === "TOO_MANY_REQUEST") {
-    const resetAt = Number(e.response_headers["x-ratelimit-reset"]);
-    // Wait until resetAt before retrying
-  }
-}
-```
+When the rate limit is exceeded, the request fails with a `429` error that carries the same headers — see [Error Handling](#error-handling).
 
 ## Error Handling
 
@@ -184,15 +155,13 @@ The SDK will return an error object when there is any error during the request, 
 | INTERNAL_ERROR                    | 502       | 502         | Something went wrong on AfterShip&#39;s end.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | INTERNAL_ERROR                    | 503       | 503         | Something went wrong on AfterShip&#39;s end.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | INTERNAL_ERROR                    | 504       | 504         | Something went wrong on AfterShip&#39;s end.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-|  |
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 
 ## Endpoints
 
 The AfterShip instance has the following properties which are exactly the same as the API endpoints:
 
-- estimatedDeliveryDate
-  - Prediction for the Estimated Delivery Date
-  - Batch prediction for the Estimated Delivery Date
 - tracking
   - Get trackings
   - Create a tracking
@@ -210,34 +179,9 @@ The AfterShip instance has the following properties which are exactly the same a
   - Get courier connection by id
   - Update courier connection by id
   - Delete courier connection by id
-
-### /estimated-delivery-date
-
-**POST** /estimated-delivery-date/predict
-
-```javascript
-const predictRequestBody = {
-  slug: "valid_value",
-  origin_address: {}, // EstimatedDeliveryDateRequestOriginAddress
-  destination_address: {}, // EstimatedDeliveryDateRequestDestinationAddress
-};
-
-aftership.estimatedDeliveryDate
-  .predict(predictRequestBody)
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
-
-**POST** /estimated-delivery-date/predict-batch
-
-```javascript
-const predictBatchRequestBody = {};
-
-aftership.estimatedDeliveryDate
-  .predictBatch(predictBatchRequestBody)
-  .then((result) => console.log(result))
-  .catch((e) => console.log(e));
-```
+- estimatedDeliveryDate
+  - Prediction for the Estimated Delivery Date
+  - Batch prediction for the Estimated Delivery Date
 
 ### /trackings
 
@@ -406,6 +350,34 @@ aftership.courierConnection
 ```javascript
 aftership.courierConnection
   .deleteCourierConnectionsById("valid_value")
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+```
+
+### /estimated-delivery-date
+
+**POST** /estimated-delivery-date/predict
+
+```javascript
+const predictRequestBody = {
+  slug: "valid_value",
+  origin_address: {}, // EstimatedDeliveryDateRequestOriginAddress
+  destination_address: {}, // EstimatedDeliveryDateRequestDestinationAddress
+};
+
+aftership.estimatedDeliveryDate
+  .predict(predictRequestBody)
+  .then((result) => console.log(result))
+  .catch((e) => console.log(e));
+```
+
+**POST** /estimated-delivery-date/predict-batch
+
+```javascript
+const predictBatchRequestBody = {};
+
+aftership.estimatedDeliveryDate
+  .predictBatch(predictBatchRequestBody)
   .then((result) => console.log(result))
   .catch((e) => console.log(e));
 ```

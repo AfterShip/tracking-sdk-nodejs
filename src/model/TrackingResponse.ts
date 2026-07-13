@@ -14,7 +14,7 @@ export interface TrackingResponse {
    */
   meta: Meta;
   /**
-   * Object describes the tracking information.&lt;div style=&#34;display:none; height: 0&#34;&gt;&lt;/div&gt;
+   * Object describes the tracking information.&lt;div style=&#34;visibility:hidden; height: 0&#34;&gt;&lt;/div&gt;
    */
   data: Tracking;
 }

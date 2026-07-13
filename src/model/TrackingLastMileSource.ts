@@ -7,6 +7,6 @@
  * The field indicates the source of last-mile carrier.
  */
 export enum TrackingLastMileSource {
-  "system" = "system",
-  "user" = "user",
+  system = "system",
+  user = "user",
 }

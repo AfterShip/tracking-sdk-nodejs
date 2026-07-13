@@ -7,7 +7,7 @@
  * Shipment delivery type- `pickup_at_store`- `pickup_at_courier`- `door_to_door`
  */
 export enum UpdateTrackingByIdRequestDeliveryType {
-  "pickup_at_store" = "pickup_at_store",
-  "pickup_at_courier" = "pickup_at_courier",
-  "door_to_door" = "door_to_door",
+  pickup_at_store = "pickup_at_store",
+  pickup_at_courier = "pickup_at_courier",
+  door_to_door = "door_to_door",
 }

@@ -4,10 +4,10 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
-import { DetectCourierRequest } from "../model/DetectCourierRequest";
-import { DetectCourierResponse } from "../model/DetectCourierResponse";
 import { GetCouriersResponse } from "../model/GetCouriersResponse";
 import { GetCouriersQuery } from "../model/GetCouriersQuery";
+import { DetectCourierRequest } from "../model/DetectCourierRequest";
+import { DetectCourierResponse } from "../model/DetectCourierResponse";
 
 export class CourierApi {
   private readonly request: Request;
@@ -23,7 +23,7 @@ export class CourierApi {
     query?: GetCouriersQuery,
     headers?: { [key: string]: any },
   ): Promise<GetCouriersResponse> {
-    const url = `/tracking/2026-01/couriers`;
+    const url = `/tracking/2026-07/couriers`;
     return this.request.makeRequest<GetCouriersResponse>({
       url: url,
       method: "GET",
@@ -38,7 +38,7 @@ export class CourierApi {
     body: DetectCourierRequest,
     headers?: { [key: string]: any },
   ): Promise<DetectCourierResponse> {
-    const url = `/tracking/2026-01/couriers/detect`;
+    const url = `/tracking/2026-07/couriers/detect`;
     return this.request.makeRequest<DetectCourierResponse>({
       url: url,
       method: "POST",

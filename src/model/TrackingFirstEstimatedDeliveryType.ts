@@ -7,6 +7,6 @@
  * The format of the EDD. Either a single date or a date range.
  */
 export enum TrackingFirstEstimatedDeliveryType {
-  "range" = "range",
-  "specific" = "specific",
+  range = "range",
+  specific = "specific",
 }

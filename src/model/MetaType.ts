@@ -7,10 +7,10 @@
  * error type, only exist if the response status is not 2xx
  */
 export enum MetaType {
-  "BadRequest" = "BadRequest",
-  "Unauthorized" = "Unauthorized",
-  "Forbidden" = "Forbidden",
-  "NotFound" = "NotFound",
-  "TooManyRequests" = "TooManyRequests",
-  "InternalError" = "InternalError",
+  BadRequest = "BadRequest",
+  Unauthorized = "Unauthorized",
+  Forbidden = "Forbidden",
+  NotFound = "NotFound",
+  TooManyRequests = "TooManyRequests",
+  InternalError = "InternalError",
 }

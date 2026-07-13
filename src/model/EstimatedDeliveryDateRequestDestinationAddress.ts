@@ -12,7 +12,7 @@ export interface EstimatedDeliveryDateRequestDestinationAddress {
    */
   country_region: string;
   /**
-   * State, province, or the equivalent location of the destination address where the package will be delivered.Either `destination_address.state` or `destination_address.postal_code` is required.
+   * State, province, or the equivalent location of the destination address where the package will be delivered.&lt;/br&gt;&lt;span style=color:#ff6b2b;padding:2px&gt;**Either `destination_address.state` or `destination_address.postal_code` is required.**&lt;/span&gt;
    */
   state?: string | null;
   /**
@@ -20,7 +20,7 @@ export interface EstimatedDeliveryDateRequestDestinationAddress {
    */
   city?: string | null;
   /**
-   * Postal code of the destination address.Either `destination_address.state` or `destination_address.postal_code` is required.
+   * Postal code of the destination address.&lt;/br&gt;&lt;span style=color:#ff6b2b;padding:2px&gt;**Either `destination_address.state` or `destination_address.postal_code` is required.**&lt;/span&gt;
    */
   postal_code?: string | null;
   /**

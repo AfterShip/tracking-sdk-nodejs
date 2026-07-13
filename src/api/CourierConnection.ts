@@ -4,14 +4,14 @@
  */
 import { Request } from "../lib/request";
 import { AftershipError, AfterShipErrorCodes } from "../error";
-import { GetCourierConnectionsResponse } from "../model/GetCourierConnectionsResponse";
-import { GetCourierConnectionsQuery } from "../model/GetCourierConnectionsQuery";
-import { PostCourierConnectionsRequest } from "../model/PostCourierConnectionsRequest";
-import { PostCourierConnectionsResponse } from "../model/PostCourierConnectionsResponse";
 import { GetCourierConnectionsByIdResponse } from "../model/GetCourierConnectionsByIdResponse";
 import { PutCourierConnectionsByIdRequest } from "../model/PutCourierConnectionsByIdRequest";
 import { PutCourierConnectionsByIdResponse } from "../model/PutCourierConnectionsByIdResponse";
 import { DeleteCourierConnectionsByIdResponse } from "../model/DeleteCourierConnectionsByIdResponse";
+import { GetCourierConnectionsResponse } from "../model/GetCourierConnectionsResponse";
+import { GetCourierConnectionsQuery } from "../model/GetCourierConnectionsQuery";
+import { PostCourierConnectionsRequest } from "../model/PostCourierConnectionsRequest";
+import { PostCourierConnectionsResponse } from "../model/PostCourierConnectionsResponse";
 
 export class CourierConnectionApi {
   private readonly request: Request;
@@ -27,7 +27,7 @@ export class CourierConnectionApi {
     query?: GetCourierConnectionsQuery,
     headers?: { [key: string]: any },
   ): Promise<GetCourierConnectionsResponse> {
-    const url = `/tracking/2026-01/courier-connections`;
+    const url = `/tracking/2026-07/courier-connections`;
     return this.request.makeRequest<GetCourierConnectionsResponse>({
       url: url,
       method: "GET",
@@ -42,7 +42,7 @@ export class CourierConnectionApi {
     body: PostCourierConnectionsRequest,
     headers?: { [key: string]: any },
   ): Promise<PostCourierConnectionsResponse> {
-    const url = `/tracking/2026-01/courier-connections`;
+    const url = `/tracking/2026-07/courier-connections`;
     return this.request.makeRequest<PostCourierConnectionsResponse>({
       url: url,
       method: "POST",
@@ -63,7 +63,7 @@ export class CourierConnectionApi {
         AfterShipErrorCodes.BAD_REQUEST,
       );
     }
-    const url = `/tracking/2026-01/courier-connections/${id}`;
+    const url = `/tracking/2026-07/courier-connections/${id}`;
     return this.request.makeRequest<GetCourierConnectionsByIdResponse>({
       url: url,
       method: "GET",
@@ -84,7 +84,7 @@ export class CourierConnectionApi {
         AfterShipErrorCodes.BAD_REQUEST,
       );
     }
-    const url = `/tracking/2026-01/courier-connections/${id}`;
+    const url = `/tracking/2026-07/courier-connections/${id}`;
     return this.request.makeRequest<PutCourierConnectionsByIdResponse>({
       url: url,
       method: "PATCH",
@@ -105,7 +105,7 @@ export class CourierConnectionApi {
         AfterShipErrorCodes.BAD_REQUEST,
       );
     }
-    const url = `/tracking/2026-01/courier-connections/${id}`;
+    const url = `/tracking/2026-07/courier-connections/${id}`;
     return this.request.makeRequest<DeleteCourierConnectionsByIdResponse>({
       url: url,
       method: "DELETE",

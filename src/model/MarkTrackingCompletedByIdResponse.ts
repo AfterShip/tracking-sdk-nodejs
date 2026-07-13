@@ -6,7 +6,7 @@
 import { Tracking } from "./Tracking";
 
 /**
- * Object describes the tracking information.&lt;div style=&#34;display:none; height: 0&#34;&gt;&lt;/div&gt;
+ * Object describes the tracking information.&lt;div style=&#34;visibility:hidden; height: 0&#34;&gt;&lt;/div&gt;
  */
 export interface MarkTrackingCompletedByIdResponse {
   /**

@@ -6,6 +6,7 @@ import { CreateTrackingRequestOrderPromisedDeliveryDate } from "./CreateTracking
 import { CreateTrackingRequestDeliveryType } from "./CreateTrackingRequestDeliveryType";
 import { CreateTrackingRequestLastMile } from "./CreateTrackingRequestLastMile";
 import { CreateTrackingRequestCustomers } from "./CreateTrackingRequestCustomers";
+import { CreateTrackingRequestShipmentDirection } from "./CreateTrackingRequestShipmentDirection";
 
 /**
  *
@@ -155,4 +156,8 @@ export interface CreateTrackingRequest {
    * The field contains the customer information associated with the tracking. A maximum of three customer objects are allowed.
    */
   customers?: CreateTrackingRequestCustomers[];
+  /**
+   * Indicates the business direction of the shipment in the e-commerce fulfillment lifecycle.Possible values:- `forward`: A forward (outbound-to-customer) shipment created for order fulfillment.- `return`: A return (customer-to-merchant) shipment created for after-sales return or exchange.When provided, this field gives AfterShip additional context about the shipment&#39;s intent, enabling more accurate status identification.
+   */
+  shipment_direction?: CreateTrackingRequestShipmentDirection;
 }
